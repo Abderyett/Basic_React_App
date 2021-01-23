@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "wesbos"
+  ],
+  "rules": {
+    "no-console": "off",
+    "react/jsx-props-no-spreading": "off",
+    "camelcase": ["error", {"allow": ["avatar_url","html_url"]}],
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 120,
+        "tabWidth": 2
+      }
+    ]
+  }
+}
