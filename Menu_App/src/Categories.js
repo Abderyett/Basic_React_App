@@ -4,10 +4,10 @@ import Menu from './Menu';
 
 const Categories = () => {
   const [menu, setMenu] = useState(data);
-  const categories = ['all', 'breakfast', 'lunch', 'shakes'];
   // We can use Set data structure and Spread to create new Array of categories
   // const categories=['all',...(new Set(data.map(item=>item.category)))]
   // Then store it inside state to iterrate over it
+  const categories = ['all', 'breakfast', 'lunch', 'shakes'];
   const filter = (categorie) => {
     if (categorie === 'all') {
       return setMenu(data);
