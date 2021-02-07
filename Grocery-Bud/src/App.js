@@ -9,10 +9,16 @@ const App = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
+
+  const showAlert = (show = false, msg = '', type = '') => {
+    setAlert({ show, msg, type });
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (!item) {
-      // Show an Alert
+      showAlert(true, 'Please enter value', 'danger');
+      console.log(alert);
     } else if (item && isEditing) {
       // deal with edit
     } else {
@@ -21,14 +27,15 @@ const App = () => {
       setItem('');
     }
   };
+
   const deleteHandler = (id) => {
     const newGrocery = grocery.filter((el) => el.id !== id);
     setGrocery(newGrocery);
   };
   return (
     <section className="section-center">
-      {alert.show && <Alert />}
-      <form className="grocery-form" onSubmit={submitHandler}>
+      {alert.show && <Alert {...alert} removeAlert={showAlert} />}
+      <form className="grocery-form">
         <h3>Grocery Bud</h3>
         <div className="form-control">
           <input
@@ -38,19 +45,21 @@ const App = () => {
             value={item}
             onChange={(e) => setItem(e.target.value)}
           />
-          <button type="button" className="submit-btn">
+          <button type="submit" className="submit-btn" onClick={submitHandler}>
             {isEditing ? 'editing' : 'submit'}
           </button>
         </div>
       </form>
-      <div className="grocery-container">
-        <div className="grocery-list">
-          <List grocery={grocery} deleteHandler={deleteHandler} />
-          <button type="button" className="clear-btn" onClick={() => setGrocery([])}>
-            clear items
-          </button>
+      {grocery.length > 0 && (
+        <div className="grocery-container">
+          <div className="grocery-list">
+            <List grocery={grocery} deleteHandler={deleteHandler} />
+            <button type="button" className="clear-btn" onClick={() => setGrocery([])}>
+              clear items
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };
