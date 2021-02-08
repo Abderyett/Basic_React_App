@@ -2,7 +2,7 @@ import React from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
-const List = ({ grocery, deleteHandler }) => (
+const List = ({ grocery, deleteHandler, editItem }) => (
   <>
     {grocery.map((el) => {
       const { id, title } = el;
@@ -10,7 +10,7 @@ const List = ({ grocery, deleteHandler }) => (
         <article className="grocery-item" key={id}>
           <p className="title">{title}</p>
           <div className="btn-container">
-            <button type="button" className="edit-btn">
+            <button type="button" className="edit-btn" onClick={() => editItem(id)}>
               <FaEdit />
             </button>
             <button type="button" className="delete-btn" onClick={() => deleteHandler(id)}>
@@ -22,6 +22,6 @@ const List = ({ grocery, deleteHandler }) => (
     })}
   </>
 );
-List.propTypes = { grocery: PropTypes.array.isRequired, deleteHandler: PropTypes.func };
+List.propTypes = { grocery: PropTypes.array.isRequired, deleteHandler: PropTypes.func, editItem: PropTypes.func };
 
 export default List;

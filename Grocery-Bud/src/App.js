@@ -17,10 +17,24 @@ const App = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!item) {
+      //! show Alert
       showAlert(true, 'Please enter value', 'danger');
       console.log(alert);
     } else if (item && isEditing) {
-      // deal with edit
+      //! deal with edit
+
+      setGrocery(
+        grocery.map((el) => {
+          if (el.id === editId) {
+            return { ...el, title: item };
+          }
+          return el;
+        })
+      );
+      setItem('');
+      setIsEditing(false);
+      setEditId(null);
+      showAlert('true', 'edited successfully', 'success');
     } else {
       showAlert('true', 'item add to the list', 'success');
       const newItem = { id: uuidv4(), title: item };
@@ -38,6 +52,13 @@ const App = () => {
   const clearlist = () => {
     showAlert(true, 'empty list', 'danger');
     setGrocery([]);
+  };
+
+  const editItem = (id) => {
+    const editedItem = grocery.find((el) => el.id === id);
+    setIsEditing(true);
+    setEditId(id);
+    setItem(editedItem.title);
   };
   return (
     <section className="section-center">
@@ -60,7 +81,7 @@ const App = () => {
       {grocery.length > 0 && (
         <div className="grocery-container">
           <div className="grocery-list">
-            <List grocery={grocery} deleteHandler={deleteHandler} />
+            <List grocery={grocery} deleteHandler={deleteHandler} editItem={editItem} />
             <button type="button" className="clear-btn" onClick={() => clearlist()}>
               clear items
             </button>
