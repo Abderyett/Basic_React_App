@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import List from './List';
 import Alert from './Alert';
@@ -22,6 +22,7 @@ const App = () => {
     } else if (item && isEditing) {
       // deal with edit
     } else {
+      showAlert('true', 'item add to the list', 'success');
       const newItem = { id: uuidv4(), title: item };
       setGrocery([...grocery, newItem]);
       setItem('');
@@ -29,12 +30,18 @@ const App = () => {
   };
 
   const deleteHandler = (id) => {
+    showAlert(true, 'item removed', 'danger');
     const newGrocery = grocery.filter((el) => el.id !== id);
     setGrocery(newGrocery);
   };
+
+  const clearlist = () => {
+    showAlert(true, 'empty list', 'danger');
+    setGrocery([]);
+  };
   return (
     <section className="section-center">
-      {alert.show && <Alert {...alert} removeAlert={showAlert} />}
+      {alert.show && <Alert {...alert} removeAlert={showAlert} grocery={grocery} />}
       <form className="grocery-form">
         <h3>Grocery Bud</h3>
         <div className="form-control">
@@ -54,7 +61,7 @@ const App = () => {
         <div className="grocery-container">
           <div className="grocery-list">
             <List grocery={grocery} deleteHandler={deleteHandler} />
-            <button type="button" className="clear-btn" onClick={() => setGrocery([])}>
+            <button type="button" className="clear-btn" onClick={() => clearlist()}>
               clear items
             </button>
           </div>

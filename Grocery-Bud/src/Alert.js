@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const Alert = ({ type, msg, removeAlert }) => {
+const Alert = ({ type, msg, removeAlert, grocery }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       removeAlert();
@@ -9,10 +9,15 @@ const Alert = ({ type, msg, removeAlert }) => {
     return () => {
       clearTimeout(timeout);
     };
-  }, []);
+  }, [grocery]);
 
   return <p className={`alert alert-${type}`}>{msg}</p>;
 };
 
-Alert.propTypes = { msg: PropTypes.string, type: PropTypes.string, removeAlert: PropTypes.func };
+Alert.propTypes = {
+  msg: PropTypes.string,
+  type: PropTypes.string,
+  removeAlert: PropTypes.func,
+  grocery: PropTypes.string,
+};
 export default Alert;
