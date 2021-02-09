@@ -19,7 +19,6 @@ const App = () => {
     if (!item) {
       //! show Alert
       showAlert(true, 'Please enter value', 'danger');
-      console.log(alert);
     } else if (item && isEditing) {
       //! deal with edit
 
