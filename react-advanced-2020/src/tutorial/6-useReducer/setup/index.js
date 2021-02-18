@@ -18,6 +18,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         people: state.people.filter((el) => el.id !== action.payload),
+        showModal: true,
+        modelContent: 'removed item',
       };
     case 'CLOSE_MODAL':
       return {
