@@ -6,8 +6,8 @@ export const useFetch = (url) => {
 
   const getProducts = useCallback(async () => {
     const response = await fetch(url);
-    const products = await response.json();
-    setProducts(products);
+    const data = await response.json();
+    setProducts(data);
     setLoading(false);
   }, [url]);
 
