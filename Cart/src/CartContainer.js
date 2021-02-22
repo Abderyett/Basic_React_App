@@ -5,6 +5,7 @@ import CartItem from './CartItem';
 function CartContainer() {
   const dispatch = useContext(DispatchContext);
   const { items, total } = useContext(StateContext);
+
   return (
     <section className="cart">
       <header>

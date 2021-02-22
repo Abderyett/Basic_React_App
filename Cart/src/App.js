@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import CartContainer from './CartContainer';
 import Navbar from './Navbar';
 import { StateContext, DispatchContext } from './context';
@@ -13,6 +13,9 @@ const initialState = {
 };
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  useEffect(() => {
+    dispatch({ type: 'ITEM_CHANGE' });
+  }, [state.items]);
 
   return (
     <StateContext.Provider value={{ ...state }}>
