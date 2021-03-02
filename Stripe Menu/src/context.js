@@ -6,9 +6,12 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [subMenu, setSubMenu] = useState(false);
+  const openSubmenu = (text, coordinate) => {
+    console.log(text, coordinate);
+  };
 
   return (
-    <AppContext.Provider value={{ showSidebar, setShowSidebar, subMenu, setSubMenu }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ showSidebar, setShowSidebar, subMenu, openSubmenu }}>{children}</AppContext.Provider>
   );
 };
 

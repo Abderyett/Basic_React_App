@@ -1,9 +1,6 @@
 import React from 'react';
-import { useGlobalContext } from './context';
 
 function Hero() {
-  const data = useGlobalContext();
-
   return (
     <section className="hero">
       <div className="hero-center">

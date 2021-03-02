@@ -7,7 +7,7 @@ import Hero from './Hero';
 const App = () => (
   <>
     <Navbar />
-    {/* <Submenu /> */}
+    <Submenu />
     <Sidebar />
     <Hero />
   </>

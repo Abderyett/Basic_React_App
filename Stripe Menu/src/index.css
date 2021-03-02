@@ -318,7 +318,7 @@ Stripe Styles
   z-index: -1;
   transition: var(--transition);
   transform: scale(0);
-  background: rgba(0, 0, 0, 0.5);
+  /* background: rgba(0, 0, 0, 0.5); */
 }
 .sidebar-wrapper.show {
   visibility: visible;
@@ -390,9 +390,10 @@ Stripe Styles
   display: block;
   width: 0;
   height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid var(--clr-white);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid var(--clr-white);
+
   position: absolute;
   top: -5px;
   left: 50%;
