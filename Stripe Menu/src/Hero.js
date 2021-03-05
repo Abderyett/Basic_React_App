@@ -1,8 +1,10 @@
 import React from 'react';
+import { useGlobalContext } from './context';
 
 function Hero() {
+  const { setSubMenu } = useGlobalContext();
   return (
-    <section className="hero">
+    <section className="hero" onMouseOver={() => setSubMenu(false)} onFocus={() => {}}>
       <div className="hero-center">
         <article className="hero-info">
           <h1>Payments infrastructure for the internet</h1>
@@ -11,7 +13,6 @@ function Hero() {
             payments, send payouts, and manage their businesses online.
           </p>
           <button type="button" className="btn">
-            {' '}
             start now
           </button>
         </article>

@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FaBars } from 'react-icons/fa';
 import data from './data';
 import { useGlobalContext } from './context';
 import logoImg from './images/logo.svg';
 
 function Navbar() {
-  const { subMenu, openSubmenu, setShowSidebar } = useGlobalContext();
+  const { openSubmenu, setShowSidebar, setSubMenu } = useGlobalContext();
   const showMenu = (e) => {
     const page = e.target.textContent;
     const btnPosition = e.target.getBoundingClientRect();
@@ -14,9 +14,13 @@ function Navbar() {
 
     openSubmenu(page, { center, bottom });
   };
-
+  const hideSubMenu = (e) => {
+    if (!e.target.classList.contains('link-btn')) {
+      setSubMenu(false);
+    }
+  };
   return (
-    <nav className="nav">
+    <nav className="nav" onMouseOver={hideSubMenu} onFocus={() => {}}>
       <div className="nav-center">
         <div className="nav-header">
           <img src={logoImg} alt="logo" className="nav-logo" />
@@ -26,9 +30,9 @@ function Navbar() {
         </div>
 
         <ul className="nav-links">
-          {data.map((el) => (
-            <li>
-              <button type="button" className="link-btn" onMouseOver={showMenu} onFocus={(e) => console.log('focus')}>
+          {data.map((el, index) => (
+            <li key={index}>
+              <button type="button" className="link-btn" onMouseOver={showMenu} onFocus={() => console.log('focus')}>
                 {el.page}
               </button>
             </li>
