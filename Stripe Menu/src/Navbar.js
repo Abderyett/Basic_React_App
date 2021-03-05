@@ -7,10 +7,10 @@ import logoImg from './images/logo.svg';
 function Navbar() {
   const { subMenu, openSubmenu, setShowSidebar } = useGlobalContext();
   const showMenu = (e) => {
-    const page = e.target;
+    const page = e.target.textContent;
     const btnPosition = e.target.getBoundingClientRect();
     const center = (btnPosition.left + btnPosition.right) / 2;
-    const bottom = btnPosition.bottom - 3;
+    const { bottom } = btnPosition - 3;
 
     openSubmenu(page, { center, bottom });
   };
