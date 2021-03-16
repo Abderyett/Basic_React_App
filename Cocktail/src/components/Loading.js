@@ -1,9 +1,11 @@
 import React from 'react';
-import useGlobalContext from '../context';
 
 function Loading() {
-  const { loading } = useGlobalContext();
-  return <div>Loading</div>;
+  return (
+    <div className="hero">
+      <h2>Loading</h2>
+    </div>
+  );
 }
 
 export default Loading;
