@@ -9,8 +9,18 @@ import Error from './Error';
 import Person from './Person';
 // navbar
 import Navbar from './Navbar';
-const ReactRouterSetup = () => {
-  return <h2>react router</h2>;
-};
+
+const ReactRouterSetup = () => (
+  <Router>
+    <Navbar />
+    <Switch>
+      <Route path="/" exact component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/people" component={People} />
+      <Route path="/person/:id" component={Person} />
+      <Route path="*" component={Error} />
+    </Switch>
+  </Router>
+);
 
 export default ReactRouterSetup;

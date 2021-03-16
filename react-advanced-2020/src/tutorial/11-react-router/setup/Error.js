@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-const Error = () => {
-  return (
-    <div>
-      <h1>Error Page</h1>
-    </div>
-  );
-};
+
+const Error = () => (
+  <div>
+    <h1>This is not web page you are lookig for</h1>
+  </div>
+);
 
 export default Error;
