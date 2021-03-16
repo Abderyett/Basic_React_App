@@ -1,19 +1,27 @@
 import React from 'react';
+import { useGlobalContext } from '../context';
 
 function CocktailItem() {
+  const { cocktails } = useGlobalContext();
   return (
     <div className="cocktail-container">
-      <article className="card">
-        <div className="img-container">
-          <img src="https://source.unsplash.com/collection/190727/800x600?1" alt="food" />
-        </div>
-        <div className="cocktail-footer">
-          <h3>Adam</h3>
-          <h4>Cocktail galss</h4>
-          <p>Alcoholic</p>
-          <button type="button"> Details</button>
-        </div>
-      </article>
+      {cocktails.map((cocktail) => {
+        const { strDrinkThumb, idDrink, strDrink, strGlass, strAlcoholic } = cocktail;
+
+        return (
+          <article className="card" key={idDrink}>
+            <div className="img-container">
+              <img src={strDrinkThumb} alt={strGlass} />
+            </div>
+            <div className="cocktail-footer">
+              <h3>{strGlass}</h3>
+              <h4>{strDrink}</h4>
+              <p>{strAlcoholic}</p>
+              <button type="button"> Details</button>
+            </div>
+          </article>
+        );
+      })}
     </div>
   );
 }

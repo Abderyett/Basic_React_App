@@ -5,18 +5,32 @@ import PropTypes from 'prop-types';
 const AppContext = React.createContext();
 
 function AppProvider({ children }) {
-  const [drinks, setDrinks] = useState([]);
+  const [cocktails, setCocktails] = useState([]);
+  const [loading, setLoading] = useState(false);
   const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
   const fetchDrink = async () => {
-    const { data } = await axios.get(url);
-    setDrinks(data);
+    try {
+      setLoading(true);
+      const response = await axios.get(url);
+
+      const { drinks } = response.data;
+      if (drinks) {
+        setLoading(false);
+        setCocktails(drinks);
+      } else {
+        setCocktails([]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   useEffect(() => {
     fetchDrink();
   }, []);
 
-  return <AppContext.Provider value={drinks}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ cocktails, loading }}>{children}</AppContext.Provider>;
 }
 
 export { AppProvider, AppContext };

@@ -239,15 +239,37 @@ input:focus {
   display: grid;
   margin: 0 auto;
   grid-template-columns: repeat(auto-fill, 40rem);
-  grid-template-rows: repeat(2, 45rem);
-  grid-auto-rows: 40rem;
+  grid-template-rows: repeat(2, 55rem);
+  grid-auto-rows: 55rem;
   grid-gap: 2rem;
   justify-content: center;
+}
+@media screen and (max-width: 350px) {
+  .cocktail-container {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fill, 25rem);
+    grid-template-rows: repeat(2, 40rem);
+    grid-auto-rows: 40rem;
+    grid-gap: 1.5rem;
+    justify-content: center;
+  }
+  .card {
+    width: 25rem;
+    height: 30rem;
+    background: var(--white);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-md);
+  }
+  .img-container img {
+    width: 25rem;
+    height: 50%;
+  }
 }
 /* Card */
 .card {
   width: 40rem;
-  height: 45rem;
+  height: 55rem;
   background: var(--white);
   border-radius: var(--rounded-lg);
   box-shadow: var(--shadow-md);
