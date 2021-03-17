@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useGlobalContext } from '../context';
 
 function CocktailItem() {
-  const { cocktails } = useGlobalContext();
+  const { cocktails, singleDrink } = useGlobalContext();
+
   return (
     <div className="cocktail-container">
       {cocktails.map((cocktail) => {
@@ -14,10 +16,12 @@ function CocktailItem() {
               <img src={strDrinkThumb} alt={strGlass} />
             </div>
             <div className="cocktail-footer">
-              <h3>{strGlass}</h3>
-              <h4>{strDrink}</h4>
+              <h3>{strDrink}</h3>
+              <h4>{strGlass}</h4>
               <p>{strAlcoholic}</p>
-              <button type="button"> Details</button>
+              <button type="button" className="btn" onClick={() => singleDrink(idDrink)}>
+                <Link to={`/cocktail/${idDrink}`}>Details</Link>
+              </button>
             </div>
           </article>
         );

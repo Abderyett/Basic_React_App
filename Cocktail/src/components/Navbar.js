@@ -5,17 +5,18 @@ function Navbar() {
   return (
     <nav>
       <div className="nav-center">
-        <a href="/">
+        <a className="logo" href="/">
           The<span>Cocktail</span>DB
         </a>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
+        <div className="nav-links">
+          <Link className="home" to="/">
+            Home
+          </Link>
+
+          <Link className="about" to="/about">
+            About
+          </Link>
+        </div>
       </div>
     </nav>
   );

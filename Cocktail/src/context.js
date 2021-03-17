@@ -7,7 +7,14 @@ const AppContext = React.createContext();
 function AppProvider({ children }) {
   const [cocktails, setCocktails] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [drink, setDrink] = useState({});
   const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+
+  const singleDrink = (id) => {
+    const newDrink = cocktails.find((el) => el.idDrink === id);
+    console.log(newDrink);
+    setDrink(newDrink);
+  };
 
   const fetchDrink = async () => {
     try {
@@ -28,9 +35,9 @@ function AppProvider({ children }) {
 
   useEffect(() => {
     fetchDrink();
-  }, []);
+  }, [drink]);
 
-  return <AppContext.Provider value={{ cocktails, loading }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ cocktails, loading, singleDrink, drink }}>{children}</AppContext.Provider>;
 }
 
 export { AppProvider, AppContext };

@@ -165,16 +165,18 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
-.nav-center ul li {
+.home,
+.about {
   display: inline-block;
+  text-decoration: none;
   margin-right: 3rem;
-  font-size: 1rem;
+  font-size: 2.5rem;
   cursor: pointer;
   color: var(--grey-900);
   background: transparent;
 }
 
-a {
+.logo {
   text-decoration: none;
   color: var(--grey-800);
   font-size: 3rem;
@@ -183,7 +185,7 @@ a {
   margin: 1rem;
   margin-left: 5rem;
 }
-a span {
+.logo span {
   color: var(--green-800);
 }
 
@@ -227,6 +229,31 @@ input:focus {
   outline-color: var(--green-600);
 }
 
+@media screen and (max-width: 768px) {
+  .home,
+  .about {
+    display: inline-block;
+    margin-right: 1.5rem;
+    list-style-type: none;
+    font-size: 1.75rem;
+    cursor: pointer;
+    color: var(--grey-900);
+    background: transparent;
+  }
+
+  .logo {
+    text-decoration: none;
+    color: var(--grey-800);
+    font-size: 2rem;
+    font-family: berylium, Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    margin: 1rem;
+    margin-left: 3rem;
+  }
+  .nav-links a span {
+    color: var(--green-800);
+  }
+}
 /* hero section */
 
 .hero h2 {
@@ -237,6 +264,7 @@ input:focus {
 }
 /* Container */
 .cocktail-container {
+  width: 85vw;
   display: grid;
   margin: 0 auto;
   grid-template-columns: repeat(auto-fill, 40rem);
@@ -245,19 +273,20 @@ input:focus {
   grid-gap: 2rem;
   justify-content: center;
 }
+
 @media screen and (max-width: 350px) {
   .cocktail-container {
     display: grid;
     margin: 0 auto;
     grid-template-columns: repeat(auto-fill, 25rem);
-    grid-template-rows: repeat(2, 40rem);
-    grid-auto-rows: 40rem;
+    grid-template-rows: repeat(2, 55rem);
+    grid-auto-rows: 55rem;
     grid-gap: 1.5rem;
     justify-content: center;
   }
   .card {
     width: 25rem;
-    height: 30rem;
+    height: 55rem;
     background: var(--white);
     border-radius: var(--rounded-lg);
     box-shadow: var(--shadow-md);
@@ -308,16 +337,77 @@ p {
   color: var(--grey-500);
   font-size: 1.5rem;
 }
-
-.cocktail-footer button {
-  padding: 1rem 1rem;
-  background: var(--green-800);
-  color: var(--white);
+.btn {
   border-radius: var(--rounded-lg);
+  background: var(--green-800);
+  padding: 1rem 1rem;
+}
+.btn a {
+  text-decoration: none;
+  background: transparent;
+  color: var(--white);
   letter-spacing: 0.2rem;
 }
-.cocktail-footer button:hover {
+.btn:hover {
   background: var(--green-400);
   color: var(--green-800);
   transition: all 0.3s linear;
+}
+
+.about-section {
+  text-align: center;
+  width: 70%;
+  margin: 5rem auto;
+}
+
+.about-section h1 {
+  color: var(--grey-800);
+  font-size: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+.about-section p {
+  font-size: 2rem;
+  line-height: 5rem;
+  letter-spacing: 0.25rem;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5rem;
+}
+
+.btn-container h1 {
+  font-size: 3rem;
+  margin-top: 3rem;
+  font-weight: bolder;
+}
+
+.drink_conatiner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 40rem);
+  grid-template-rows: 40rem;
+  grid-gap: 2rem;
+  justify-content: center;
+}
+
+.image img {
+  width: 40rem;
+  height: 40rem;
+  border-radius: var(--rounded-lg);
+}
+.description h3 {
+  margin: 2rem;
+  font-size: 1.5rem;
+  padding: 1rem;
+  line-height: 2rem;
+}
+
+.description span {
+  background: var(--green-500);
+  padding: 0.1rem;
+  color: var(--white);
+  border-radius: var(--rounded-md);
+  margin-right: 1rem;
 }

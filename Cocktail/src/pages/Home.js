@@ -1,6 +1,6 @@
 import React from 'react';
-import Searchbox from './Searchbox';
-import CocktailList from './CocktailList';
+import Searchbox from '../components/Searchbox';
+import CocktailList from '../components/CocktailList';
 
 function Home() {
   return (
