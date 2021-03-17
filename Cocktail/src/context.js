@@ -8,6 +8,7 @@ function AppProvider({ children }) {
   const [cocktails, setCocktails] = useState([]);
   const [loading, setLoading] = useState(false);
   const [drink, setDrink] = useState({});
+  const [searchTerm, setSearchTerm] = useState('');
   const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
   const singleDrink = (id) => {
@@ -16,6 +17,8 @@ function AppProvider({ children }) {
     setDrink(newDrink);
   };
 
+  console.log(cocktails);
+  // Fetch Data from API
   const fetchDrink = async () => {
     try {
       setLoading(true);
@@ -33,11 +36,25 @@ function AppProvider({ children }) {
     }
   };
 
+  // Filter Fetched data
+  const filtredCocktail = () => {
+    const newCocktail = cocktails.filter((el) => el.strDrink.toLowerCase().includes(searchTerm.toLowerCase()));
+    if (searchTerm.length > 0) {
+      setCocktails(newCocktail);
+    } else {
+      fetchDrink();
+    }
+  };
+
   useEffect(() => {
     fetchDrink();
-  }, [drink]);
+  }, [searchTerm]);
 
-  return <AppContext.Provider value={{ cocktails, loading, singleDrink, drink }}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={{ cocktails, loading, singleDrink, drink, setSearchTerm, filtredCocktail }}>
+      {children}
+    </AppContext.Provider>
+  );
 }
 
 export { AppProvider, AppContext };
