@@ -217,32 +217,33 @@ h3 {
   color: var(--grey-500);
   font-size: 2rem;
   cursor: pointer;
+  background: transparent;
 }
 .icon:hover {
   color: var(--blue-500);
   transition: all 0.3s ease;
 }
 /* button */
-.btn {
+.btn-container {
   display: flex;
   justify-content: center;
 }
-button {
+.btn {
   margin-top: 2rem;
   background: var(--blue-500);
   color: var(--white);
   padding: 1rem;
   border-radius: 3px;
 }
-button:hover {
+.btn:hover {
   background: var(--blue-400);
   transition: all 0.3s ease;
 }
-button:focus {
+.btn:focus {
   outline: none;
 }
 
-button:active {
+.btn:active {
   transform: translateY(2px);
   transition: none;
 }
