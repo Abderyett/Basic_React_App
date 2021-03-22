@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Input from './components/Input';
 import { color } from './utilities';
+import CardList from './components/CradList';
 
 const App = () => (
   <AppWrapper>
     <Input />
+    <CardList />
   </AppWrapper>
 );
 
