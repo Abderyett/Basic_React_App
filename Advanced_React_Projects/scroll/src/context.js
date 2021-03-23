@@ -7,11 +7,12 @@ const AppContext = React.createContext();
 function AppProvider({ children }) {
   const [active, setActive] = useState(false);
   const [photos, setPhotos] = useState([]);
+  const [searchTerm, SetSearchTerm] = useState('office');
 
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
-        `https://api.unsplash.com/search/photos?page=1&query=office&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`
+        `https://api.unsplash.com/search/photos?page=1&query=${searchTerm}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`
       );
 
       if (data) {
@@ -27,7 +28,11 @@ function AppProvider({ children }) {
     fetchData();
   }, []);
 
-  return <AppContext.Provider value={{ active, setActive, photos }}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={{ active, setActive, photos, SetSearchTerm, searchTerm, fetchData }}>
+      {children}
+    </AppContext.Provider>
+  );
 }
 
 AppProvider.propTypes = PropTypes.element.isRequired;

@@ -6,7 +6,7 @@ import { useGlobalContext } from '../context';
 
 function Input() {
   const inputRef = useRef();
-  const { active, setActive } = useGlobalContext();
+  const { active, setActive, SetSearchTerm, searchTerm, fetchData } = useGlobalContext();
 
   useEffect(() => {
     const handler = (event) => {
@@ -20,10 +20,20 @@ function Input() {
     };
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchData(searchTerm);
+  };
+
   return (
-    <SearchWrapper ref={inputRef} active={+active} onClick={() => setActive(!active)}>
-      <StyledInput type="text" active={+active} placeholder="Search Image" />
-      <Search active={+active} />
+    <SearchWrapper ref={inputRef} active={+active} onClick={() => setActive(!active)} onSubmit={handleSubmit}>
+      <StyledInput
+        type="text"
+        active={+active}
+        placeholder="Search Image"
+        onChange={(e) => SetSearchTerm(e.target.value)}
+      />
+      <SearchIcon active={+active} />
     </SearchWrapper>
   );
 }
@@ -46,7 +56,7 @@ const StyledInput = styled.input`
     text-indent: 5%;
   }
 `;
-const Search = styled(FaSearch)`
+const SearchIcon = styled(FaSearch)`
   color: ${(active) => (active.active ? `${color.indigo_500}` : `${color.grey_700}`)};
 
   font-size: 1.25rem;

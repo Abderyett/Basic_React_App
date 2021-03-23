@@ -6,7 +6,7 @@ import { useGlobalContext } from '../context';
 
 function CradList() {
   const { photos } = useGlobalContext();
-  console.log('photos', photos);
+
   return (
     <StyledCardList>
       {photos.map((photo) => {
@@ -22,7 +22,6 @@ function CradList() {
           profileImage,
           url,
         };
-        console.log('newPhoto', newPhoto);
 
         return <Card key={id} photo={{ ...newPhoto }} />;
       })}
