@@ -1,24 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { rounded, color } from '../utilities';
 
-function Card() {
-  const url =
-    'https://images.unsplash.com/photo-1612832164065-fc35ded2a291?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNzY2ODF8MXwxfGFsbHwxfHx8fHx8Mnx8MTYxNjM5NjU3Ng&ixlib=rb-1.2.1&q=80&w=1080';
-  const urlAuthor =
-    'https://images.unsplash.com/profile-1587651800415-20eed2ec0209image?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=64&w=64';
+function Card({ photo }) {
+  const { likes, portfolioUrl, name, profileImage, url } = photo;
+
   return (
     <CardWrapper>
       <Image src={url} alt="surface" />
 
       <Article>
         <InfoWrapper>
-          <h4>Detail</h4>
-          <h5>Likes</h5>
+          <h4>{name}</h4>
+          <h5>{likes}</h5>
         </InfoWrapper>
 
-        <InfoImage>
-          <img src={urlAuthor} alt="author" />
+        <InfoImage href={portfolioUrl}>
+          <img src={profileImage} alt="author" />
         </InfoImage>
       </Article>
     </CardWrapper>
@@ -74,5 +73,6 @@ const InfoImage = styled.a`
     cursor: pointer;
   }
 `;
+Card.propTypes = PropTypes.object.isRequired;
 
 export default Card;

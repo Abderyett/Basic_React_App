@@ -1,12 +1,31 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import styled from 'styled-components';
 import Card from './Card';
+import { useGlobalContext } from '../context';
 
 function CradList() {
+  const { photos } = useGlobalContext();
+  console.log('photos', photos);
   return (
     <StyledCardList>
-      <Card />
-      <Card />
+      {photos.map((photo) => {
+        const { id, likes } = photo;
+        const { portfolio_url: portfolioUrl, name } = photo.user;
+        const { medium: profileImage } = photo.user.profile_image;
+        const { regular: url } = photo.urls;
+
+        const newPhoto = {
+          likes,
+          portfolioUrl,
+          name,
+          profileImage,
+          url,
+        };
+        console.log('newPhoto', newPhoto);
+
+        return <Card key={id} photo={{ ...newPhoto }} />;
+      })}
     </StyledCardList>
   );
 }
