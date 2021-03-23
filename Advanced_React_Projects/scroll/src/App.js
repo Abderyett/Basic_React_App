@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Input from './components/Input';
-import { color } from './utilities';
 import CardList from './components/CradList';
+import { useGlobalContext } from './context';
 
-const App = () => (
-  <AppWrapper>
-    <Input />
-    <CardList />
-  </AppWrapper>
-);
+const App = () => {
+  const { setPages } = useGlobalContext();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { innerHeight, scrollY } = window;
+      const { scrollHeight } = document.body;
+      if (innerHeight + scrollY >= scrollHeight - 2) {
+        setPages((prevState) => prevState + 1);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  return (
+    <AppWrapper>
+      <Input />
+      <CardList />
+    </AppWrapper>
+  );
+};
 
 const AppWrapper = styled.div`
   width: 85vw;
-  height: 100vh;
+  height: 95vh;
   margin: 0 auto;
-  /* background: ${color.blue_200}; */
 `;
 export default App;

@@ -8,15 +8,16 @@ function AppProvider({ children }) {
   const [active, setActive] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [searchTerm, SetSearchTerm] = useState('office');
+  const [pages, setPages] = useState(1);
 
-  const fetchData = async () => {
+  const fetchData = async (term) => {
     try {
       const { data } = await axios.get(
-        `https://api.unsplash.com/search/photos?page=1&query=${searchTerm}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`
+        `https://api.unsplash.com/search/photos?page=${pages}&query=${term}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`
       );
 
       if (data) {
-        setPhotos(data.results);
+        setPhotos((oldPhotos) => [...oldPhotos, ...data.results]);
       } else {
         setPhotos([]);
       }
@@ -25,11 +26,11 @@ function AppProvider({ children }) {
     }
   };
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(searchTerm);
+  }, [pages]);
 
   return (
-    <AppContext.Provider value={{ active, setActive, photos, SetSearchTerm, searchTerm, fetchData }}>
+    <AppContext.Provider value={{ active, setActive, photos, SetSearchTerm, searchTerm, fetchData, pages, setPages }}>
       {children}
     </AppContext.Provider>
   );
