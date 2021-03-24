@@ -8,7 +8,7 @@ function AppProvider({ children }) {
   const [active, setActive] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [searchTerm, SetSearchTerm] = useState('office');
-  const [pages, setPages] = useState(1);
+  const [pages, setPages] = useState(0);
 
   const fetchData = async (term) => {
     try {
@@ -17,7 +17,11 @@ function AppProvider({ children }) {
       );
 
       if (data) {
-        setPhotos((oldPhotos) => [...oldPhotos, ...data.results]);
+        if (searchTerm && pages === 0) {
+          setPhotos(data.results);
+        } else {
+          setPhotos((oldPhotos) => [...oldPhotos, ...data.results]);
+        }
       } else {
         setPhotos([]);
       }
@@ -30,7 +34,9 @@ function AppProvider({ children }) {
   }, [pages]);
 
   return (
-    <AppContext.Provider value={{ active, setActive, photos, SetSearchTerm, searchTerm, fetchData, pages, setPages }}>
+    <AppContext.Provider
+      value={{ active, setActive, photos, SetSearchTerm, searchTerm, fetchData, pages, setPages, setPhotos }}
+    >
       {children}
     </AppContext.Provider>
   );

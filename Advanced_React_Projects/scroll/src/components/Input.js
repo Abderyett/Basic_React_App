@@ -6,7 +6,7 @@ import { useGlobalContext } from '../context';
 
 function Input() {
   const inputRef = useRef();
-  const { active, setActive, SetSearchTerm, searchTerm, fetchData } = useGlobalContext();
+  const { active, setActive, SetSearchTerm, searchTerm, fetchData, setPages, setPhotos } = useGlobalContext();
 
   useEffect(() => {
     const handler = (event) => {
@@ -22,6 +22,8 @@ function Input() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setPages(1);
+    setPhotos([]);
     fetchData(searchTerm);
   };
 
