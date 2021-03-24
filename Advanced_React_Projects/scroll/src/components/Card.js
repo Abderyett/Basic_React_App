@@ -13,7 +13,7 @@ function Card({ photo }) {
       <Article>
         <InfoWrapper>
           <h4>{name}</h4>
-          <h5>{likes}</h5>
+          <h5>{likes} Likes</h5>
         </InfoWrapper>
 
         <InfoImage href={portfolioUrl}>
@@ -60,6 +60,7 @@ const InfoWrapper = styled.div`
   flex-direction: column;
   margin-left: 2rem;
   line-height: 1.5rem;
+  font-size: 1.25rem;
 `;
 
 const InfoImage = styled.a`

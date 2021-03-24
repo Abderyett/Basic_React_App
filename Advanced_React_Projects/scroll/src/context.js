@@ -29,6 +29,7 @@ function AppProvider({ children }) {
       console.log('Oh there is an Error', error);
     }
   };
+
   useEffect(() => {
     fetchData(searchTerm);
   }, [pages]);
