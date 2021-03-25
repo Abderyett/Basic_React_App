@@ -1,19 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
-import { color } from './utilities';
+import styled, { ThemeProvider } from 'styled-components';
 import Navbar from './components/Navbar';
 import Text from './components/Text';
 import { GlobalStyle } from './Global';
 import { useGlobalContext } from './context';
+import { darkTheme, lightTheme } from './utilities/theme';
 
 const App = () => {
   const { toggle } = useGlobalContext();
   return (
-    <AppWrapper toggle={toggle}>
-      <Navbar toggle={toggle} />
-      <Text />
-      <GlobalStyle toggle={toggle} />
-    </AppWrapper>
+    <ThemeProvider theme={toggle ? darkTheme : lightTheme}>
+      <AppWrapper>
+        <Navbar />
+        <Text />
+        <GlobalStyle />
+      </AppWrapper>
+    </ThemeProvider>
   );
 };
 
@@ -21,7 +23,7 @@ const AppWrapper = styled.div`
   width: 70vw;
   height: 100vh;
   margin: 0 auto;
-  background: ${(toggle) => (toggle.toggle ? `${color.blue_900}` : `${color.white}`)};
+  background: ${({ theme }) => theme.background};
 `;
 
 export default App;

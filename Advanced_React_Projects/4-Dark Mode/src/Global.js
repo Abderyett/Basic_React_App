@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { color } from './utilities';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -15,8 +14,7 @@ html {
 }
 
 body{
-background:${(toggle) => (toggle.toggle ? `${color.blue_900}` : `${color.white}`)}
-}
+background:${({ theme }) => theme.background}
 
 
 `;

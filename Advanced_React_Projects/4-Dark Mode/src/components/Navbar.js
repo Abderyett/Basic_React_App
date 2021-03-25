@@ -1,7 +1,6 @@
 import React from 'react';
 import { FiSun } from 'react-icons/fi';
 import { IoMoonSharp } from 'react-icons/io5';
-
 import styled from 'styled-components';
 import { useGlobalContext } from '../context';
 import { color } from '../utilities';
@@ -26,6 +25,7 @@ const Nav = styled.nav`
   h1 {
     font-size: 3rem;
     padding: 2rem;
+    color: ${(props) => props.theme.headingText};
   }
   button {
     background: transparent;
