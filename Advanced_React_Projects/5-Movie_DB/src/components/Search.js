@@ -7,7 +7,7 @@ function Search() {
   return (
     <Form>
       <SearchSvg />
-      <Input type="text" placeholder="Search" />
+      <Input type="text" placeholder="Search for a movie" />
     </Form>
   );
 }

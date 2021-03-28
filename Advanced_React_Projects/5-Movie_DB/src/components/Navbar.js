@@ -15,7 +15,7 @@ function Navbar() {
 
 const Nav = styled.nav`
   height: 5rem;
-  background: ${color.blue_grey_600};
+  background: ${color.blue_grey_700};
   color: ${color.white};
   display: flex;
   align-items: center;
