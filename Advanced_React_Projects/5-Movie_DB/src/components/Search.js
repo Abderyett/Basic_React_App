@@ -17,14 +17,14 @@ const Form = styled.form`
   display: flex;
   align-items: center;
   background-color: ${color.grey_200};
-  border-radius: ${rounded.sm};
+  border-radius: ${rounded.lg};
   width: 40%;
   max-width: 1117px;
   margin-right: 5rem;
 `;
 
 const Input = styled.input`
-  border-radius: ${rounded.sm};
+  border-radius: ${rounded.lg};
   height: 3rem;
   width: 100%;
 

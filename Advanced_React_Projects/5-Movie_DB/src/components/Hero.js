@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import img from '../images/Hero_image.jpg';
 import { color } from '../utilities';
 
-function Hero() {
+export function Hero() {
   return (
     <StyledHero>
       <TextHero>
@@ -21,7 +21,7 @@ const StyledHero = styled.div`
   background: url(${img});
   background-repeat: no-repeat;
   background-size: cover;
-  filter: opacity(80%);
+  filter: sepia(90%) hue-rotate(170deg) saturate(190%);
   @media screen and (min-width: 1400px) {
     width: 85vw;
     margin: 0 auto;
@@ -31,15 +31,16 @@ const TextHero = styled.div`
   z-index: 3;
   padding: 4rem;
   color: ${color.white};
-  padding-top: 10rem;
+  padding-top: 14rem;
   line-height: 4rem;
+  letter-spacing: 0.125rem;
   h1 {
-    font-size: 4rem;
+    font-size: 4.8rem;
     margin-bottom: 1rem;
+    font-weight: 600;
   }
   h2 {
-    font-size: 2.5rem;
+    font-size: 3.2rem;
+    font-weight: 300;
   }
 `;
-
-export default Hero;

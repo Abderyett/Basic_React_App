@@ -1,12 +1,12 @@
 import React from 'react';
-import Navbar from './components/Navbar';
 import { GlobalStyle } from './Global';
-import Hero from './components/Hero';
+import { Navbar, Hero, CardList } from './components';
 
 const App = () => (
   <>
     <Navbar />
     <Hero />
+    <CardList />
     <GlobalStyle />
   </>
 );
