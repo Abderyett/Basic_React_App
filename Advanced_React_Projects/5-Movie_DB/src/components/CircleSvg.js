@@ -4,29 +4,33 @@ import { color } from '../utilities';
 
 function CircleSvg() {
   return (
-    <StyledSvg height={40} width={40} fill="black">
+    <StyledSvg height={40} width={40} fill={`${color.blue_grey_900}`}>
       <circle
         r="17"
         cx="20"
         cy="20"
-        stroke={`${color.green_400}`}
+        stroke={`${color.cyan_500}`}
         strokeWidth="3"
         strokeDasharray="78"
         strokeDashoffset=""
       />
-      {/* <path
-        d="M16 29.333c7.364 0 13.333-5.97 13.333-13.333 0-7.364-5.97-13.333-13.333-13.333C8.636 2.667 2.667 8.637 2.667 16c0 7.364 5.97 13.333 13.333 13.333z"
-        stroke={`${color.green_500}`}
-        strokeWidth={3}
-        strokeDasharray=""
-        strokeDashoffset="10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      /> */}
+      <text x="50%" y="50%" stroke="white" textAnchor="middle" strokeWidth="1px" dy=".3em">
+        78 <tspan dy="-0.3rem">%</tspan>
+      </text>
     </StyledSvg>
   );
 }
 
-const StyledSvg = styled.svg``;
+const StyledSvg = styled.svg`
+  text {
+    stroke: white;
+    fill: white;
+    font-size: 1.125rem;
+    tspan {
+      font-size: 0.7rem;
+      stroke-width: 0.25px;
+    }
+  }
+`;
 
 export default CircleSvg;

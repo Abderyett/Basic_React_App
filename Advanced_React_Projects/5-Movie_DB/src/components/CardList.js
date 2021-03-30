@@ -43,7 +43,7 @@ const Heading = styled.div`
   h1 {
     padding-top: 2rem;
     padding-left: 0.25rem;
-    color: ${color.black};
+    color: ${color.white};
     font-size: 2.5rem;
   }
 `;

@@ -34,8 +34,9 @@ const CardFooter = styled.div`
   bottom: 30px;
   left: 20px;
   h3 {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
     font-size: 1.5rem;
+    color: ${color.blue_grey_800};
   }
   h4 {
     color: ${color.grey_500};
