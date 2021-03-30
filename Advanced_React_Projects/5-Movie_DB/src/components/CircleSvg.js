@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import { color } from '../utilities';
 
-function CircleSvg() {
+function CircleSvg({ voteAverage }) {
   return (
     <StyledSvg height={40} width={40} fill={`${color.blue_grey_900}`}>
       <circle
@@ -11,12 +13,13 @@ function CircleSvg() {
         cy="20"
         stroke={`${color.cyan_500}`}
         strokeWidth="3"
-        strokeDasharray="78"
+        strokeDasharray={17 * 2 * Math.PI * (voteAverage / 10)}
         strokeDashoffset=""
         transform="rotate(-90, 20, 20)"
       />
       <text x="50%" y="50%" stroke="white" textAnchor="middle" strokeWidth="0.75px" dy=".3em">
-        78 <tspan dy="-0.3rem">%</tspan>
+        {voteAverage * 10}
+        <tspan dy="-0.3rem">%</tspan>
       </text>
     </StyledSvg>
   );
@@ -33,5 +36,7 @@ const StyledSvg = styled.svg`
     }
   }
 `;
+
+CircleSvg.propTypes = PropTypes.number;
 
 export default CircleSvg;

@@ -11,7 +11,7 @@ function Card({ movie }) {
       <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${img}`} alt={title} />
 
       <CardFooter>
-        <CircleSvg />
+        <CircleSvg voteAverage={voteAverage} />
         <h3>{title}</h3>
         <h4>{releaseDate}</h4>
       </CardFooter>
@@ -23,9 +23,13 @@ const StyledCard = styled.article`
   height: 40rem;
   border-radius: ${rounded.lg};
   padding-top: 3rem;
+
   img {
     width: 100%;
     border-radius: ${rounded.lg};
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 const CardFooter = styled.div`
