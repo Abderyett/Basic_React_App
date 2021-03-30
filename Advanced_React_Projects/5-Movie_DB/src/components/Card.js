@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { color, rounded } from '../utilities';
 import CircleSvg from './CircleSvg';
 
-function Card() {
+function Card({ movie }) {
+  const { title, release_date: releaseDate, vote_average: voteAverage, backdrop_path: img } = movie;
   return (
     <StyledCard>
-      <img src="http://image.tmdb.org/t/p/w500/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg" alt="jsutice league" />
+      <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${img}`} alt={title} />
 
       <CardFooter>
         <CircleSvg />
-        <h3>Justice League</h3>
-        <h4>19 mars 2021</h4>
+        <h3>{title}</h3>
+        <h4>{releaseDate}</h4>
       </CardFooter>
     </StyledCard>
   );
@@ -27,21 +29,27 @@ const StyledCard = styled.article`
   }
 `;
 const CardFooter = styled.div`
-  height: 79px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   position: relative;
   bottom: 30px;
   left: 20px;
+
   h3 {
     margin-top: 0.25rem;
     font-size: 1.5rem;
     color: ${color.blue_grey_800};
+    font-weight: 400;
   }
   h4 {
     color: ${color.grey_500};
     font-size: 1rem;
     padding-top: 0.5rem;
+    letter-spacing: 0.125rem;
+    line-height: 1.5rem;
   }
 `;
+
+Card.propTypes = PropTypes.object.isRequired;
 export default Card;

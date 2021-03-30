@@ -2,20 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { color } from '../utilities';
 import Card from './Card';
+import { useGlobalContext } from '../context';
 
 export function CardList() {
+  const { movies } = useGlobalContext();
+
   return (
     <>
       <CardContainer>
         <Heading>
           <h1>Popular Movies</h1>
         </Heading>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {movies.map((movie) => {
+          const { id } = movie;
+          return <Card key={id} movie={{ ...movie }} />;
+        })}
       </CardContainer>
     </>
   );
@@ -24,8 +25,6 @@ export function CardList() {
 const CardContainer = styled.section`
   width: 95vw;
   max-width: 1400px;
-
-  background-color: #bcccdc;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, 20rem);
@@ -43,7 +42,7 @@ const Heading = styled.div`
   h1 {
     padding-top: 2rem;
     padding-left: 0.25rem;
-    color: ${color.white};
+    color: ${color.blue_grey_800};
     font-size: 2.5rem;
   }
 `;

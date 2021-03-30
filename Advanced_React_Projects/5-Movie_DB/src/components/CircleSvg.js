@@ -13,8 +13,9 @@ function CircleSvg() {
         strokeWidth="3"
         strokeDasharray="78"
         strokeDashoffset=""
+        transform="rotate(-90, 20, 20)"
       />
-      <text x="50%" y="50%" stroke="white" textAnchor="middle" strokeWidth="1px" dy=".3em">
+      <text x="50%" y="50%" stroke="white" textAnchor="middle" strokeWidth="0.75px" dy=".3em">
         78 <tspan dy="-0.3rem">%</tspan>
       </text>
     </StyledSvg>
