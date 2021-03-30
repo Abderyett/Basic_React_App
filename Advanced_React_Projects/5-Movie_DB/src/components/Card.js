@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 import { color, rounded } from '../utilities';
 import CircleSvg from './CircleSvg';
 
@@ -13,7 +14,7 @@ function Card({ movie }) {
       <CardFooter>
         <CircleSvg voteAverage={voteAverage} />
         <h3>{title}</h3>
-        <h4>{releaseDate}</h4>
+        <h4>{format(new Date(releaseDate), 'dd MMM yyyy')}</h4>
       </CardFooter>
     </StyledCard>
   );
