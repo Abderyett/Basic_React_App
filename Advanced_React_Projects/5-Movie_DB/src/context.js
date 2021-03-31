@@ -9,13 +9,17 @@ function AppProvider({ children }) {
   const [pages, setPages] = useState(1);
   const [movies, setMovies] = useState([]);
 
-  const movieUrl = `https://api.themoviedb.org/3/discover/movie?api_key=ba38b88f8bfb9a65a0576301fdade214&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
+  const movieUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pages}`;
 
   const fetchMovie = async () => {
     try {
       const { data } = await axios.get(movieUrl);
-      console.log(data.results);
-      setMovies(data.results);
+
+      if (pages === 1) {
+        setMovies(data.results);
+      } else {
+        setMovies((oldMovies) => [...oldMovies, ...data.results]);
+      }
     } catch (error) {
       console.log('Oh No There is An Error', error);
     }
@@ -23,7 +27,7 @@ function AppProvider({ children }) {
 
   useEffect(() => {
     fetchMovie();
-  }, []);
+  }, [pages]);
 
   console.log('Movies', movies);
 

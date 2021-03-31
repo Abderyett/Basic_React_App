@@ -15,6 +15,7 @@ function CircleSvg({ voteAverage }) {
         strokeWidth="3"
         strokeDasharray={17 * 2 * Math.PI * (voteAverage / 10)}
         strokeDashoffset=""
+        strokeLinecap="round"
         transform="rotate(-90, 20, 20)"
       />
       <text x="50%" y="50%" stroke="white" textAnchor="middle" strokeWidth="0.75px" dy=".3em">

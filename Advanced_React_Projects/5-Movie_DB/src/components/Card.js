@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
-import { color, rounded } from '../utilities';
+import { color, rounded, shadow } from '../utilities';
 import CircleSvg from './CircleSvg';
 
 function Card({ movie }) {
@@ -28,6 +28,7 @@ const StyledCard = styled.article`
   img {
     width: 100%;
     border-radius: ${rounded.lg};
+    box-shadow: ${shadow.lg};
     &:hover {
       cursor: pointer;
     }

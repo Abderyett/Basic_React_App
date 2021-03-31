@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { color } from '../utilities';
+import { color, rounded, shadow } from '../utilities';
 import Card from './Card';
 import { useGlobalContext } from '../context';
 
 export function CardList() {
-  const { movies } = useGlobalContext();
+  const { movies, setPages } = useGlobalContext();
 
   return (
     <>
@@ -18,6 +18,11 @@ export function CardList() {
           return <Card key={id} movie={{ ...movie }} />;
         })}
       </CardContainer>
+      <BtnContainer>
+        <button type="button" onClick={() => setPages((prevState) => prevState + 1)}>
+          Load More...
+        </button>
+      </BtnContainer>
     </>
   );
 }
@@ -44,5 +49,32 @@ const Heading = styled.div`
     padding-left: 0.25rem;
     color: ${color.blue_grey_800};
     font-size: 2.5rem;
+  }
+`;
+
+const BtnContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10rem;
+  margin-top: 5rem;
+
+  button {
+    padding: 1.5rem 3rem;
+    font-weight: 700;
+    border-radius: ${rounded.lg};
+    box-shadow: ${shadow.md};
+    color: ${color.white};
+    background: ${color.cyan_500};
+    cursor: pointer;
+    &:hover {
+      background: ${color.cyan_600};
+    }
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      transform: translateY(1px);
+    }
   }
 `;
