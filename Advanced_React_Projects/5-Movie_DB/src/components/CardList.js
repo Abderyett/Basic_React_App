@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { color, rounded, shadow } from '../utilities';
 import Card from './Card';
 import { useGlobalContext } from '../context';
@@ -9,7 +10,7 @@ export function CardList() {
 
   return (
     <>
-      <CardContainer>
+      <CardContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 3 }}>
         <Heading>
           <h1>Popular Movies</h1>
         </Heading>
@@ -27,7 +28,7 @@ export function CardList() {
   );
 }
 
-const CardContainer = styled.section`
+const CardContainer = styled(motion.section)`
   width: 95vw;
   max-width: 1400px;
   margin: 0 auto;
