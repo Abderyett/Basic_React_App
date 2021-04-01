@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { color } from '../utilities';
-import Logo from './logo';
+import { Logo } from './svg';
 import Search from './Search';
 
 export function Navbar() {

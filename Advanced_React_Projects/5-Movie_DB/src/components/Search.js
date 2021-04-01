@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { rounded, color } from '../utilities';
-import SearchSvg from './SearchSvg';
+import { SearchSvg } from './svg';
 
 function Search() {
   return (

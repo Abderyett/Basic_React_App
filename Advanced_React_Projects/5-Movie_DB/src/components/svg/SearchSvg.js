@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { color } from '../utilities';
+import { color } from '../../utilities';
 
-function Icon() {
+export function SearchSvg() {
   return (
     <Svg width={24} height={24} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -23,5 +23,3 @@ const Svg = styled.svg`
   width: 20%;
   max-width: 31px;
 `;
-
-export default Icon;

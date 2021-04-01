@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { color, rounded, shadow } from '../utilities';
-import Card from './Card';
 import { useGlobalContext } from '../context';
+import Card from './Card';
 
 export function CardList() {
   const { movies, setPages } = useGlobalContext();
@@ -28,7 +28,7 @@ export function CardList() {
   );
 }
 
-const CardContainer = styled(motion.section)`
+const CardContainer = styled.section`
   width: 95vw;
   max-width: 1400px;
   margin: 0 auto;
@@ -43,7 +43,7 @@ const CardContainer = styled(motion.section)`
     margin: 0 auto;
   } ;
 `;
-const Heading = styled.div`
+const Heading = styled(motion.div)`
   grid-column: 1/-1;
   h1 {
     padding-top: 2rem;

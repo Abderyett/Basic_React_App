@@ -8,10 +8,12 @@ function AppProvider({ children }) {
   const [term, setTerm] = useState('');
   const [pages, setPages] = useState(1);
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const movieUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pages}`;
 
   const fetchMovie = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.get(movieUrl);
 
@@ -20,6 +22,7 @@ function AppProvider({ children }) {
       } else {
         setMovies((oldMovies) => [...oldMovies, ...data.results]);
       }
+      setLoading(false);
     } catch (error) {
       console.log('Oh No There is An Error', error);
     }
@@ -32,7 +35,9 @@ function AppProvider({ children }) {
   console.log('Movies', movies);
 
   return (
-    <AppContext.Provider value={{ movies, setMovies, term, setTerm, pages, setPages }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ movies, setMovies, term, setTerm, pages, setPages, loading }}>
+      {children}
+    </AppContext.Provider>
   );
 }
 

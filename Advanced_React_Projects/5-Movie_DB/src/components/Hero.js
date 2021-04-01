@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import img from '../images/Hero_image.jpg';
 import { color } from '../utilities';
 
 export function Hero() {
   return (
     <StyledHero>
-      <TextHero>
+      <TextHero initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 2 }}>
         <h1>Welcome.</h1>
         <h2>Millions of movies, TV shows and people to discover. Explore now.</h2>
       </TextHero>
@@ -27,7 +28,7 @@ const StyledHero = styled.div`
     margin: 0 auto;
   } ;
 `;
-const TextHero = styled.div`
+const TextHero = styled(motion.div)`
   z-index: 3;
   padding: 4rem;
   color: ${color.white};
