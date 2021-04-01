@@ -38,4 +38,4 @@ const StyledSvg = styled.svg`
   }
 `;
 
-CircleSvg.propTypes = PropTypes.number;
+CircleSvg.propTypes = PropTypes.number.isRequired;

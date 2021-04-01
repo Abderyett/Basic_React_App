@@ -10,7 +10,6 @@ const App = () => {
       <Navbar />
       <Hero />
       {loading && pages === 1 ? <Loading /> : <CardList />}
-
       <GlobalStyle />
     </>
   );

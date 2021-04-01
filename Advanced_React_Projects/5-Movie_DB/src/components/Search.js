@@ -2,12 +2,27 @@ import React from 'react';
 import styled from 'styled-components';
 import { rounded, color } from '../utilities';
 import { SearchSvg } from './svg';
+import { useGlobalContext } from '../context';
 
 function Search() {
+  const { term, setTerm, fetchMovie, setMovies } = useGlobalContext();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setMovies([]);
+    fetchMovie();
+  };
+  console.log(term);
   return (
-    <Form>
+    <Form onSubmit={submitHandler}>
       <SearchSvg />
-      <Input type="text" placeholder="Search for a movie" />
+      <Input
+        type="text"
+        placeholder="Search for a movie"
+        onChange={(e) => {
+          setTerm(e.target.value);
+        }}
+      />
     </Form>
   );
 }

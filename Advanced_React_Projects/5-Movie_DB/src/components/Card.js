@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { color, rounded, shadow } from '../utilities';
 import { CircleSvg } from './svg';
+import noimage from '../images/NoImage.jpg';
 
 function Card({ movie }) {
   const { title, release_date: releaseDate, vote_average: voteAverage, backdrop_path: img } = movie;
   return (
     <StyledCard initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}>
-      <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${img}`} alt={title} />
+      <img src={img === null ? noimage : `https://image.tmdb.org/t/p/w220_and_h330_face${img}`} alt={title} />
 
       <CardFooter>
         <CircleSvg voteAverage={voteAverage} />
