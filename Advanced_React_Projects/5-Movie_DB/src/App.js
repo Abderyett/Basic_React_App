@@ -4,11 +4,12 @@ import { Navbar, Hero, CardList, Loading } from './components';
 import { useGlobalContext } from './context';
 
 const App = () => {
-  const { loading, pages } = useGlobalContext();
+  const { loading, pages, term } = useGlobalContext();
   return (
     <>
       <Navbar />
-      <Hero />
+      {!term && <Hero />}
+
       {loading && pages === 1 ? <Loading /> : <CardList />}
       <GlobalStyle />
     </>

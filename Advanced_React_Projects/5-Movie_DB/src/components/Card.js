@@ -15,15 +15,15 @@ function Card({ movie }) {
 
       <CardFooter>
         <CircleSvg voteAverage={voteAverage} />
-        <h3>{title}</h3>
-        <h4>{format(new Date(releaseDate), 'dd MMM yyyy')}</h4>
+        <h3>{title.substring(0, 30)}</h3>
+        <h4>{!releaseDate ? 'No Release Date' : format(new Date(releaseDate), 'dd MMM yyyy')}</h4>
       </CardFooter>
     </StyledCard>
   );
 }
 const StyledCard = styled(motion.article)`
   width: 20rem;
-  height: 40rem;
+  height: 42rem;
   border-radius: ${rounded.lg};
   padding-top: 3rem;
 

@@ -6,14 +6,21 @@ import { useGlobalContext } from '../context';
 import Card from './Card';
 
 export function CardList() {
-  const { movies, setPages } = useGlobalContext();
+  const { movies, setPages, term } = useGlobalContext();
 
   return (
     <>
       <CardContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 3 }}>
-        <Heading>
-          <h1>Popular Movies</h1>
-        </Heading>
+        {term ? (
+          <Heading>
+            <h1>Search Results</h1>
+          </Heading>
+        ) : (
+          <Heading>
+            <h1>Popular Movies</h1>
+          </Heading>
+        )}
+
         {movies.map((movie) => {
           const { id } = movie;
           return <Card key={id} movie={{ ...movie }} />;

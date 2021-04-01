@@ -14,7 +14,6 @@ export function CircleSvg({ voteAverage }) {
         stroke={`${color.cyan_500}`}
         strokeWidth="3"
         strokeDasharray={17 * 2 * Math.PI * (voteAverage / 10)}
-        strokeDashoffset=""
         strokeLinecap="round"
         transform="rotate(-90, 20, 20)"
       />
