@@ -1,19 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { GlobalStyle } from './Global';
-import { Navbar, Hero, CardList, Loading } from './components';
-import { useGlobalContext } from './context';
+import Home from './Home';
+import { Navbar, Error } from './components';
 
-const App = () => {
-  const { loading, pages, term } = useGlobalContext();
-  return (
-    <>
+const App = () => (
+  <>
+    <Router>
       <Navbar />
-      {!term && <Hero />}
-
-      {loading && pages === 1 ? <Loading /> : <CardList />}
-      <GlobalStyle />
-    </>
-  );
-};
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="*" exact component={Error} />
+      </Switch>
+    </Router>
+    <GlobalStyle />
+  </>
+);
 
 export default App;

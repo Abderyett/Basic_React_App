@@ -23,7 +23,7 @@ export function CardList() {
 
         {movies.map((movie) => {
           const { id } = movie;
-          return <Card key={id} movie={{ ...movie }} />;
+          return <Card key={id} movie={{ ...movie, id }} />;
         })}
       </CardContainer>
       <BtnContainer>
