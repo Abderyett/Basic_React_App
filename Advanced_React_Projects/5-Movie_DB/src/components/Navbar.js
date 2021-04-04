@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { color } from '../utilities';
 import { Logo } from './svg';
 import Search from './Search';
@@ -7,7 +8,9 @@ import Search from './Search';
 export function Navbar() {
   return (
     <Nav>
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
       <Search />
     </Nav>
   );

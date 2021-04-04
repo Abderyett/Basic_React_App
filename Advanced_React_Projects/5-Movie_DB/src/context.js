@@ -9,12 +9,11 @@ function AppProvider({ children }) {
   const [pages, setPages] = useState(1);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [singleMovie, setSingleMovie] = useState({});
-  const [movieId, setmovieId] = useState();
 
   const movieUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pages}`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${term}&page=${pages}`;
-  const detailUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}`;
+
+  // Fetch Movies
 
   const fetchMovie = async () => {
     setLoading(true);
@@ -31,26 +30,13 @@ function AppProvider({ children }) {
       console.log('Oh No There is An Error', error);
     }
   };
-  const fetchDetails = async () => {
-    try {
-      const { data } = await axios.get(detailUrl);
-      setSingleMovie(data);
-    } catch (error) {
-      console.log('Oh no there is an Error', error);
-    }
-  };
-  useEffect(() => {
-    fetchDetails(movieId);
-  }, [movieId]);
 
   useEffect(() => {
     fetchMovie();
   }, [pages]);
 
   return (
-    <AppContext.Provider
-      value={{ movies, setMovies, term, setTerm, pages, setPages, loading, fetchMovie, singleMovie, setmovieId }}
-    >
+    <AppContext.Provider value={{ movies, setMovies, term, setTerm, pages, setPages, loading, fetchMovie }}>
       {children}
     </AppContext.Provider>
   );
