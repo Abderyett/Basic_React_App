@@ -9,6 +9,7 @@ function AppProvider({ children }) {
   const [pages, setPages] = useState(1);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const movieUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pages}`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${term}&page=${pages}`;
@@ -36,7 +37,9 @@ function AppProvider({ children }) {
   }, [pages]);
 
   return (
-    <AppContext.Provider value={{ movies, setMovies, term, setTerm, pages, setPages, loading, fetchMovie }}>
+    <AppContext.Provider
+      value={{ movies, setMovies, term, setTerm, pages, setPages, loading, fetchMovie, showModal, setShowModal }}
+    >
       {children}
     </AppContext.Provider>
   );

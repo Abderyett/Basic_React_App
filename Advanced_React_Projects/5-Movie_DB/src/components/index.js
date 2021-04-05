@@ -4,3 +4,4 @@ export * from './Navbar';
 export * from './Loading';
 export * from './Error';
 export * from './SingleMovie';
+export * from './Modal';

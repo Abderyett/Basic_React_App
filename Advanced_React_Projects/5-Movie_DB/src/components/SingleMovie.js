@@ -5,9 +5,12 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 import { color, rounded } from '../utilities';
 import { Loading } from './Loading';
+import { Modal } from './Modal';
 import { CircleSvg } from './svg';
+import { useGlobalContext } from '../context';
 
 export function SingleMovie() {
+  const { setShowModal, showModal } = useGlobalContext();
   const [singleMovie, setSingleMovie] = useState([]);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
@@ -47,32 +50,45 @@ export function SingleMovie() {
     return <Loading />;
   }
   return (
-    <StyledContainer backdrop={backdrop}>
-      <ImageContainer>
-        <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}`} alt={title} />
-      </ImageContainer>
-      <TextContainer>
-        <h1>
-          {title} ({!releaseDate ? 'No date' : format(new Date(releaseDate), ' yyyy ')})
-        </h1>
-        <StyledGenre runtime={runtime}>{genres && genres.map((el) => <span key={el.id}>{el.name}</span>)}</StyledGenre>
+    <>
+      {showModal && <Modal />}
+      <StyledContainer backdrop={backdrop}>
+        <ImageContainer>
+          <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}`} alt={title} />
+        </ImageContainer>
+        <TextContainer>
+          <h1>
+            {title} ({!releaseDate ? 'No date' : format(new Date(releaseDate), ' yyyy ')})
+          </h1>
+          <StyledGenre runtime={runtime}>
+            {genres && genres.map((el) => <span key={el.id}>{el.name}</span>)}
+          </StyledGenre>
 
-        <StatContainer>
-          <CircleSvg voteAverage={voteAverage} />
+          <StatContainer>
+            <CircleSvg voteAverage={voteAverage} />
 
-          <div>
-            User <br />
-            Score
-          </div>
-          <span>&#9654; Play trailer</span>
-        </StatContainer>
-        <em>{tagline}</em>
-        <Overview>
-          <h2>Overview</h2> <br />
-          <p> {overview}</p>
-        </Overview>
-      </TextContainer>
-    </StyledContainer>
+            <div>
+              User <br />
+              Score
+            </div>
+            <button
+              onClick={() => setShowModal(true)}
+              onKeyDown={() => {
+                console.log('down');
+              }}
+              type="submit"
+            >
+              <span>&#9654; Play trailer</span>
+            </button>
+          </StatContainer>
+          <em>{tagline}</em>
+          <Overview>
+            <h2>Overview</h2> <br />
+            <p> {overview}</p>
+          </Overview>
+        </TextContainer>
+      </StyledContainer>
+    </>
   );
 }
 
@@ -123,11 +139,21 @@ const StatContainer = styled.div`
 
   div {
     margin-left: 0.75rem;
+    font-size: 1.5rem;
   }
-  span {
+  button {
     margin-left: 1rem;
-    font-size: 1rem;
+
     cursor: pointer;
+    color: white;
+    background: transparent;
+    &:focus {
+      outline: none;
+    }
+    span {
+      font-size: 1.5rem;
+      font-family: 'Sans Regular';
+    }
   }
 `;
 const Overview = styled.div`
