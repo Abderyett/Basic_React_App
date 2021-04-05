@@ -12,7 +12,7 @@ function Search() {
     setMovies([]);
     fetchMovie();
   };
-  console.log(term);
+
   return (
     <Form onSubmit={submitHandler}>
       <SearchSvg />
