@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { slice } from 'lodash';
+import { motion } from 'framer-motion';
 import { color, shadow, rounded } from '../utilities';
 import { Loading } from './Loading';
 import { useGlobalContext } from '../context';
@@ -31,7 +32,7 @@ export function Cast({ movieID }) {
   return (
     <>
       {loading && <Loading />}
-      <StyledTable>
+      <StyledTable initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}>
         <TableHead>
           <tr>
             <th colSpan="3">Cast</th>
@@ -41,7 +42,7 @@ export function Cast({ movieID }) {
         {slice(actors, 0, limit).map((actor) => {
           const { id, character, name, profile_path: image } = actor;
           return (
-            <TableBody key={id}>
+            <TableBody key={id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}>
               <tr>
                 <td>
                   <img src={image ? `https://image.tmdb.org/t/p/w92${image}` : noImage} alt={name} />
@@ -62,7 +63,7 @@ export function Cast({ movieID }) {
   );
 }
 
-const StyledTable = styled.table`
+const StyledTable = styled(motion.table)`
   border-bottom: 0.5px solid ${color.grey_400};
   border-radius: ${rounded.lg};
   border-collapse: collapse;
@@ -83,7 +84,7 @@ const TableHead = styled.thead`
     font-size: 2rem;
   }
 `;
-const TableBody = styled.tbody`
+const TableBody = styled(motion.tbody)`
   /* &:nth-child(2n + 1) {
     background: ${color.grey_200};
   } */
