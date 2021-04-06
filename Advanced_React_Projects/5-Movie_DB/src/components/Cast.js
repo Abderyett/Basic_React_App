@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { slice } from 'lodash';
 import { color, shadow, rounded } from '../utilities';
 import { Loading } from './Loading';
 import { useGlobalContext } from '../context';
@@ -10,6 +11,7 @@ import noImage from '../images/noActorImage1.png';
 export function Cast({ movieID }) {
   const { loading, setLoading } = useGlobalContext();
   const [actors, setActors] = useState([]);
+  const [limit, setLimit] = useState(6);
   const url = `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
   const fetchActors = async () => {
     setLoading(true);
@@ -35,7 +37,8 @@ export function Cast({ movieID }) {
             <th colSpan="3">Cast</th>
           </tr>
         </TableHead>
-        {actors.map((actor) => {
+
+        {slice(actors, 0, limit).map((actor) => {
           const { id, character, name, profile_path: image } = actor;
           return (
             <TableBody key={id}>
@@ -50,6 +53,11 @@ export function Cast({ movieID }) {
           );
         })}
       </StyledTable>
+      {actors.length !== limit && (
+        <StyledButton type="button" onClick={() => setLimit((prev) => prev + (actors.length - prev))}>
+          Load More...
+        </StyledButton>
+      )}
     </>
   );
 }
@@ -68,7 +76,7 @@ const StyledTable = styled.table`
 const TableHead = styled.thead`
   tr,
   th {
-    border-bottom: 3px solid ${color.blue_500};
+    border-bottom: 2px solid ${color.blue_500};
     box-shadow: ${shadow.md};
     text-align: left;
     padding: 1rem;
@@ -90,6 +98,19 @@ const TableBody = styled.tbody`
       object-fit: contain;
       border-radius: ${rounded.sm};
     }
+  }
+`;
+
+const StyledButton = styled.button`
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  background-color: transparent;
+  color: ${color.blue_500};
+  font-size: 1.5rem;
+  font-weight: 700;
+  &:hover {
+    color: ${color.blue_400};
+    cursor: pointer;
   }
 `;
 
