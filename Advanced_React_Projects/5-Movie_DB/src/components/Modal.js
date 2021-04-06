@@ -8,9 +8,6 @@ import { Times } from './svg';
 export function Modal({ videoId }) {
   const { setShowModal } = useGlobalContext();
 
-  const videoSrc = `https://www.youtube.com/embed/${videoId}`;
-  console.log(videoSrc);
-
   const closeModal = () => {
     setShowModal(false);
   };
@@ -29,7 +26,6 @@ export function Modal({ videoId }) {
       document.removeEventListener('keyup', closeWithEsc);
     };
   }, []);
-  console.log('id inside Modall', videoId);
 
   return ReactDOM.createPortal(
     <StyledModal>

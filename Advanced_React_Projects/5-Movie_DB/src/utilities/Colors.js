@@ -21,6 +21,7 @@ export const color = {
   grey_300: '#e2e8f0',
   grey_200: '#edf2f7',
   grey_100: '#f7fafc',
+  grey_050: '#F0F4F8',
 
   warm_grey_050: '#FAF9F7',
   warm_grey_100: '#E8E6E1',

@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import { color, rounded } from '../utilities';
 import { Loading } from './Loading';
 import { Modal } from './Modal';
+import { Cast } from './Cast';
 import { CircleSvg } from './svg';
 import { useGlobalContext } from '../context';
 
@@ -52,8 +53,7 @@ export function SingleMovie() {
       const { data } = await axios.get(
         `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${title}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
       );
-      console.log(data);
-      console.log(data.items[0].id.videoId);
+
       setvideoId(data.items[0].id.videoId);
     } catch (error) {
       console.log(error);
@@ -98,6 +98,7 @@ export function SingleMovie() {
           </Overview>
         </TextContainer>
       </StyledContainer>
+      <Cast movieID={id} />
     </>
   );
 }
@@ -109,7 +110,7 @@ const StyledContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   display: grid;
-  grid-template-columns: 30rem 50%;
+  grid-template-columns: 30rem 55%;
   grid-gap: 2rem;
   padding-left: 30px;
   grid-template-rows: auto;
@@ -126,6 +127,7 @@ const ImageContainer = styled.div`
 const TextContainer = styled.div`
   color: ${color.white};
   width: 100%;
+  max-width: 1400px;
   background: rgba(0, 0, 0, 0.7);
   padding: 2rem;
   border-radius: ${rounded.lg};

@@ -38,7 +38,19 @@ function AppProvider({ children }) {
 
   return (
     <AppContext.Provider
-      value={{ movies, setMovies, term, setTerm, pages, setPages, loading, fetchMovie, showModal, setShowModal }}
+      value={{
+        movies,
+        setMovies,
+        term,
+        setTerm,
+        pages,
+        setPages,
+        loading,
+        setLoading,
+        fetchMovie,
+        showModal,
+        setShowModal,
+      }}
     >
       {children}
     </AppContext.Provider>
