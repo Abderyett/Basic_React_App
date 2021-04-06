@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { useGlobalContext } from '../context';
 import { Times } from './svg';
 
-export function Modal() {
+export function Modal({ id }) {
   const { setShowModal } = useGlobalContext();
-  const videoSrc = `https://www.youtube.com/embed/u8ZsUivELbs`;
+
+  const videoSrc = `https://www.youtube.com/embed/${id}`;
 
   const closeModal = () => {
     setShowModal(false);
@@ -26,6 +28,7 @@ export function Modal() {
       document.removeEventListener('keyup', closeWithEsc);
     };
   }, []);
+  console.log('id inside Modall', id);
 
   return ReactDOM.createPortal(
     <StyledModal>
@@ -33,7 +36,15 @@ export function Modal() {
         <TimesContainer>
           <Times />
         </TimesContainer>
-        <iframe src={videoSrc} frameBorder="0" title="video player" />
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/odM92ap8_c0"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
       </ModalContainer>
     </StyledModal>,
     document.querySelector('#modal')
@@ -67,3 +78,5 @@ const TimesContainer = styled.div`
   margin-right: 9rem;
   cursor: pointer;
 `;
+
+Modal.propTypes = PropTypes.string;

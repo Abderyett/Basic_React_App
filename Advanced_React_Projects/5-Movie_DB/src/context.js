@@ -20,7 +20,7 @@ function AppProvider({ children }) {
     setLoading(true);
     try {
       const { data } = await axios.get(term === '' ? movieUrl : searchUrl);
-      console.log(data);
+
       if (pages === 1) {
         setMovies(data.results);
       } else {

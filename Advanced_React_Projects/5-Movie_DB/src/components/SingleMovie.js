@@ -13,6 +13,7 @@ export function SingleMovie() {
   const { setShowModal, showModal } = useGlobalContext();
   const [singleMovie, setSingleMovie] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [videoId, setvideoId] = useState([]);
   const { id } = useParams();
   const detailUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
 
@@ -28,7 +29,6 @@ export function SingleMovie() {
       console.log('Oh no there is an Error', error);
     }
   };
-  console.log(singleMovie);
 
   useEffect(() => {
     fetchDetails();
@@ -46,12 +46,28 @@ export function SingleMovie() {
     runtime,
     tagline,
   } = singleMovie;
+
+  const fetchVideoId = async () => {
+    try {
+      const { data } = await axios.get(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${title}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+      );
+      console.log(data);
+      console.log(data.items[0].id.videoId);
+      setvideoId(data.items[0].id.videoId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchVideoId();
+  }, []);
   if (loading) {
     return <Loading />;
   }
   return (
     <>
-      {showModal && <Modal />}
+      {showModal && <Modal id={videoId} />}
       <StyledContainer backdrop={backdrop}>
         <ImageContainer>
           <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}`} alt={title} />
@@ -71,13 +87,7 @@ export function SingleMovie() {
               User <br />
               Score
             </div>
-            <button
-              onClick={() => setShowModal(true)}
-              onKeyDown={() => {
-                console.log('down');
-              }}
-              type="submit"
-            >
+            <button onClick={() => setShowModal(true)} type="submit">
               <span>&#9654; Play trailer</span>
             </button>
           </StatContainer>
