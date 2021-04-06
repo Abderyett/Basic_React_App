@@ -61,13 +61,13 @@ export function SingleMovie() {
   };
   useEffect(() => {
     fetchVideoId();
-  }, []);
+  }, [videoId]);
   if (loading) {
     return <Loading />;
   }
   return (
     <>
-      {showModal && <Modal id={videoId} />}
+      {showModal && <Modal videoId={videoId} />}
       <StyledContainer backdrop={backdrop}>
         <ImageContainer>
           <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}`} alt={title} />

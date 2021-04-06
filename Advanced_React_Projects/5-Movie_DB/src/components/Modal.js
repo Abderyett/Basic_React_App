@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useGlobalContext } from '../context';
 import { Times } from './svg';
 
-export function Modal({ id }) {
+export function Modal({ videoId }) {
   const { setShowModal } = useGlobalContext();
 
-  const videoSrc = `https://www.youtube.com/embed/${id}`;
+  const videoSrc = `https://www.youtube.com/embed/${videoId}`;
+  console.log(videoSrc);
 
   const closeModal = () => {
     setShowModal(false);
@@ -28,7 +29,7 @@ export function Modal({ id }) {
       document.removeEventListener('keyup', closeWithEsc);
     };
   }, []);
-  console.log('id inside Modall', id);
+  console.log('id inside Modall', videoId);
 
   return ReactDOM.createPortal(
     <StyledModal>
@@ -39,7 +40,7 @@ export function Modal({ id }) {
         <iframe
           width="560"
           height="315"
-          src="https://www.youtube.com/embed/odM92ap8_c0"
+          src={`https://www.youtube.com/embed/${videoId}`}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
