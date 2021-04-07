@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { SvgLink } from './svg';
+import { color } from '../utilities';
 
 function MovieDetails({ homepage, budget, status, language, companies }) {
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
   });
-  console.log(language);
 
   return (
-    <div>
+    <StyledArticle>
       <h4>Status</h4>
       <p> {status}</p>
       <h4>Original Language</h4>
@@ -18,12 +19,49 @@ function MovieDetails({ homepage, budget, status, language, companies }) {
       <h4>Budget</h4>
       <p> {budget === 0 ? '-' : formatter.format(budget)}</p>
 
-      <a href={homepage} target="_blank" rel="noreferrer">
-        <SvgLink />
+      <a href={homepage} target="_blank" rel="noreferrer" title="Homepage">
+        <h4>Homepage</h4> <SvgLink />
       </a>
-    </div>
+      <h4>Produced by:</h4>
+      {companies && companies[0].logo_path === null ? (
+        <p>{companies[0].name} </p>
+      ) : (
+        <img
+          src={`https://image.tmdb.org/t/p/w500${companies && companies[0].logo_path}`}
+          alt={companies && companies[0].name}
+        />
+      )}
+    </StyledArticle>
   );
 }
+
+const StyledArticle = styled.article`
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4rem;
+  margin-left: 10rem;
+
+  h4 {
+    font-size: 1.75rem;
+    color: ${color.grey_800};
+    padding-bottom: 0.5rem;
+  }
+  p {
+    font-size: 1.25rem;
+    color: ${color.grey_700};
+    padding-bottom: 1rem;
+  }
+  a {
+    text-decoration: none;
+    font-size: 1.25rem;
+    color: ${color.grey_700};
+  }
+  img {
+    width: 100px;
+
+    margin-top: 2rem;
+  }
+`;
 
 MovieDetails.propTypes = {
   homepage: PropTypes.string,

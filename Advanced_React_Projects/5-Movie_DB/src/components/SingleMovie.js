@@ -107,8 +107,10 @@ export function SingleMovie() {
           </Overview>
         </TextContainer>
       </StyledContainer>
-      <Cast movieID={id} />
-      <MovieDetails homepage={homepage} budget={budget} status={status} language={language} companies={companies} />
+      <DetailSContainer>
+        <Cast movieID={id} />
+        <MovieDetails homepage={homepage} budget={budget} status={status} language={language} companies={companies} />
+      </DetailSContainer>
     </>
   );
 }
@@ -190,6 +192,15 @@ const Overview = styled.div`
     line-height: 2rem;
   }
 `;
+const DetailSContainer = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95vw;
+  max-width: 1400px;
+  margin: 0 auto;
+`;
+
 const StyledGenre = styled.p`
   font-size: 1.4rem;
   padding-bottom: 4rem;

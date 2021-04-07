@@ -30,7 +30,7 @@ export function Cast({ movieID }) {
   }, [movieID]);
 
   return (
-    <>
+    <div>
       {loading && <Loading />}
       <StyledTable initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}>
         <TableHead>
@@ -59,7 +59,7 @@ export function Cast({ movieID }) {
           Load More...
         </StyledButton>
       )}
-    </>
+    </div>
   );
 }
 
@@ -78,7 +78,7 @@ const StyledTable = styled(motion.table)`
 const TableHead = styled.thead`
   tr,
   th {
-    border-bottom: 2px solid ${color.blue_500};
+    border-bottom: 2px solid ${color.grey_500};
     box-shadow: ${shadow.md};
     text-align: left;
     padding: 1rem;
