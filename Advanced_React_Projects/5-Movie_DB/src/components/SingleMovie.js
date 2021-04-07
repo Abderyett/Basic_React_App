@@ -8,6 +8,7 @@ import { Loading } from './Loading';
 import { Modal } from './Modal';
 import { Cast } from './Cast';
 import NavHome from './NavHome';
+import MovieDetails from './MovieDetails';
 import { CircleSvg } from './svg';
 import { useGlobalContext } from '../context';
 
@@ -26,6 +27,8 @@ export function SingleMovie() {
 
       setSingleMovie(res.data);
 
+      console.log(res.data);
+
       setLoading(false);
     } catch (error) {
       console.log('Oh no there is an Error', error);
@@ -41,7 +44,11 @@ export function SingleMovie() {
     genres,
     title,
     overview,
-
+    homepage,
+    budget,
+    status,
+    spoken_languages: language,
+    production_companies: companies,
     poster_path: poster,
     release_date: releaseDate,
     vote_average: voteAverage,
@@ -69,7 +76,7 @@ export function SingleMovie() {
   return (
     <>
       {showModal && <Modal videoId={videoId} />}
-      <NavHome />
+      <NavHome title={title} />
       <StyledContainer backdrop={backdrop}>
         <ImageContainer>
           <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}`} alt={title} />
@@ -101,6 +108,7 @@ export function SingleMovie() {
         </TextContainer>
       </StyledContainer>
       <Cast movieID={id} />
+      <MovieDetails homepage={homepage} budget={budget} status={status} language={language} companies={companies} />
     </>
   );
 }

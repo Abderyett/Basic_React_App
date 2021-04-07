@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { color } from '../utilities';
 
-function NavHome() {
+function NavHome({ title }) {
   return (
     <Nav>
-      <StyledLink to="/">Home</StyledLink> | Movie Title
+      <StyledLink to="/">Home</StyledLink> | {title}
     </Nav>
   );
 }
@@ -35,8 +36,8 @@ const StyledLink = styled(Link)`
     margin-top: 2px;
     right: 0;
     background: #fff;
-    transition: width 0.2s ease;
-    -webkit-transition: width 0.2s ease;
+    transition: width 0.5s ease;
+    -webkit-transition: width 0.5s ease;
   }
 
   &:hover:after {
@@ -45,4 +46,5 @@ const StyledLink = styled(Link)`
     background: #fff;
   }
 `;
+NavHome.propTypes = PropTypes.string;
 export default NavHome;
