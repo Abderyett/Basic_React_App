@@ -36,9 +36,7 @@ function MovieDetails({ homepage, budget, status, language, companies }) {
 }
 
 const StyledArticle = styled.article`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 4rem;
+  margin-top: 3.5rem;
   margin-left: 10rem;
 
   h4 {

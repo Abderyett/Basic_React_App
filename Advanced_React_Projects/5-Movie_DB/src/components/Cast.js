@@ -70,7 +70,7 @@ const StyledTable = styled(motion.table)`
   color: ${color.blue_grey_700};
   font-size: 1.5rem;
   width: 40vw;
-  max-width: 780px;
+  max-width: 580px;
   margin: 2rem;
   font-family: 'Sans Regular';
 `;

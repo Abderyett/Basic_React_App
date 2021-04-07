@@ -107,10 +107,10 @@ export function SingleMovie() {
           </Overview>
         </TextContainer>
       </StyledContainer>
-      <DetailSContainer>
+      <DetailsContainer>
         <Cast movieID={id} />
         <MovieDetails homepage={homepage} budget={budget} status={status} language={language} companies={companies} />
-      </DetailSContainer>
+      </DetailsContainer>
     </>
   );
 }
@@ -192,13 +192,13 @@ const Overview = styled.div`
     line-height: 2rem;
   }
 `;
-const DetailSContainer = styled.section`
+const DetailsContainer = styled.section`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 95vw;
-  max-width: 1400px;
   margin: 0 auto;
+  justify-content: center;
+  margin-top: 5rem;
+  width: 90vw;
+  max-width: 1000px;
 `;
 
 const StyledGenre = styled.p`

@@ -17,9 +17,10 @@ export function Navbar() {
 }
 
 const Nav = styled.nav`
-  height: 5rem;
-  background: ${color.blue_800};
-  color: ${color.white};
+  height: 6rem;
+  background: rgb(43, 108, 176);
+  background: linear-gradient(90deg, rgba(43, 108, 176, 1) 0%, rgba(44, 82, 130, 1) 100%);
+  color: ${color.grey_100};
 
   display: flex;
   align-items: center;

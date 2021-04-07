@@ -14,16 +14,20 @@ function NavHome({ title }) {
 
 const Nav = styled.nav`
   width: 100%;
-  height: 4rem;
-  background: rgba(0, 0, 0, 0.7);
+  height: 5rem;
+  top: 0;
+  left: 0;
+  position: sticky;
+  background: rgb(43, 108, 176);
+  background: linear-gradient(90deg, rgba(43, 108, 176, 1) 0%, rgba(44, 82, 130, 1) 100%);
   color: ${color.white};
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-family: 'Sans Regular';
   display: flex;
   align-items: center;
 `;
 const StyledLink = styled(Link)`
-  color: ${color.white};
+  color: ${color.grey_100};
   text-decoration: none;
   margin: 2rem;
   position: relative;
