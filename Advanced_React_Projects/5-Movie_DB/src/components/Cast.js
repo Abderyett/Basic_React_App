@@ -72,6 +72,7 @@ const StyledTable = styled(motion.table)`
   width: 40vw;
   max-width: 780px;
   margin: 2rem;
+  font-family: 'Sans Regular';
 `;
 
 const TableHead = styled.thead`
@@ -82,6 +83,7 @@ const TableHead = styled.thead`
     text-align: left;
     padding: 1rem;
     font-size: 2rem;
+    font-family: 'Sans Regular';
   }
 `;
 const TableBody = styled(motion.tbody)`
@@ -94,6 +96,7 @@ const TableBody = styled(motion.tbody)`
 
     text-align: left;
     padding: 0.4rem;
+    font-family: 'Sans Regular';
     img {
       height: 45px;
       object-fit: contain;
@@ -115,4 +118,4 @@ const StyledButton = styled.button`
   }
 `;
 
-Cast.propTypes = PropTypes.number;
+Cast.propTypes = PropTypes.number.isRequired;

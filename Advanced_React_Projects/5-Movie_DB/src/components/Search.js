@@ -5,7 +5,7 @@ import { SearchSvg } from './svg';
 import { useGlobalContext } from '../context';
 
 function Search() {
-  const { term, setTerm, fetchMovie, setMovies } = useGlobalContext();
+  const { setTerm, fetchMovie, setMovies } = useGlobalContext();
 
   const submitHandler = (e) => {
     e.preventDefault();

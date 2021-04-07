@@ -7,6 +7,7 @@ import { color, rounded } from '../utilities';
 import { Loading } from './Loading';
 import { Modal } from './Modal';
 import { Cast } from './Cast';
+import NavHome from './NavHome';
 import { CircleSvg } from './svg';
 import { useGlobalContext } from '../context';
 
@@ -68,6 +69,7 @@ export function SingleMovie() {
   return (
     <>
       {showModal && <Modal videoId={videoId} />}
+      <NavHome />
       <StyledContainer backdrop={backdrop}>
         <ImageContainer>
           <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}`} alt={title} />
@@ -109,6 +111,7 @@ const StyledContainer = styled.div`
   background: ${(props) => `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${props.backdrop})`};
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'Sans Regular';
   display: grid;
   grid-template-columns: 30rem 55%;
   grid-gap: 2rem;
@@ -126,6 +129,7 @@ const ImageContainer = styled.div`
 
 const TextContainer = styled.div`
   color: ${color.white};
+  font-family: 'Sans Regular';
   width: 100%;
   max-width: 1400px;
   background: rgba(0, 0, 0, 0.7);
@@ -138,10 +142,12 @@ const TextContainer = styled.div`
   h1 {
     font-size: 3.5rem;
     font-weight: 600;
+    font-family: 'Sans Regular';
   }
   em {
     color: ${color.grey_400};
     font-size: 1.4rem;
+    font-family: 'Sans Regular';
   }
 `;
 const StatContainer = styled.div`
