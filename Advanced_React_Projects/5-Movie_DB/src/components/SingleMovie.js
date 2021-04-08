@@ -233,12 +233,12 @@ const StatContainer = styled.div`
 const Overview = styled.div`
   margin-top: 2rem;
   font-size: 1.5rem;
-  @media (max-width: 768px) {
-    font-size: 1.25rem;
-    margin-top: 1.5rem;
+  @media (max-width: 1024px) {
+    font-size: 1.5rem;
   }
+
   p {
-    font-size: 1rem;
+    font-size: 1.25rem;
     line-height: 2rem;
   }
 `;

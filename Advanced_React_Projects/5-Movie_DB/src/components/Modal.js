@@ -60,9 +60,13 @@ const StyledModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  #d56b43 iframe {
-    width: 90%;
-    height: 100%;
+  iframe {
+    width: 100%;
+    height: 90%;
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 50%;
+    }
   }
 `;
 
