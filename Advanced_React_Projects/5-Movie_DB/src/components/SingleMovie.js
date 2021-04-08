@@ -27,8 +27,6 @@ export function SingleMovie() {
 
       setSingleMovie(res.data);
 
-      console.log(res.data);
-
       setLoading(false);
     } catch (error) {
       console.log('Oh no there is an Error', error);
@@ -56,20 +54,22 @@ export function SingleMovie() {
     tagline,
   } = singleMovie;
 
-  const fetchVideoId = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${title}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
-      );
+  // const fetchVideoId = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${title}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+  //     );
+  //     console.log(data);
 
-      setvideoId(data.items[0].id.videoId);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchVideoId();
-  }, [videoId]);
+  //     setvideoId(data.items[0].id.videoId);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchVideoId();
+  // }, [videoId]);
+
   if (loading) {
     return <Loading />;
   }
@@ -97,7 +97,7 @@ export function SingleMovie() {
               Score
             </div>
             <button onClick={() => setShowModal(true)} type="submit">
-              <span>&#9654; Play trailer</span>
+              <span dataSi>&#9654; Play trailer</span>
             </button>
           </StatContainer>
           <em>{tagline}</em>
@@ -123,7 +123,7 @@ const StyledContainer = styled.div`
   background-size: cover;
   font-family: 'Sans Regular';
   display: grid;
-  grid-template-columns: 30rem 55%;
+  grid-template-columns: 30rem 50%;
   grid-gap: 2rem;
   padding-left: 30px;
   grid-template-rows: auto;
@@ -141,7 +141,7 @@ const TextContainer = styled.div`
   color: ${color.white};
   font-family: 'Sans Regular';
   width: 100%;
-  max-width: 1400px;
+  max-width: 1280px;
   background: rgba(0, 0, 0, 0.7);
   padding: 2rem;
   border-radius: ${rounded.lg};

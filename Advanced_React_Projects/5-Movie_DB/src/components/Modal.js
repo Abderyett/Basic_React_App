@@ -27,6 +27,9 @@ export function Modal({ videoId }) {
     };
   }, []);
 
+  console.log(videoId);
+
+  // {`https://www.youtube.com/embed/${videoId}`}
   return ReactDOM.createPortal(
     <StyledModal>
       <ModalContainer>
@@ -36,7 +39,7 @@ export function Modal({ videoId }) {
         <iframe
           width="560"
           height="315"
-          src={`https://www.youtube.com/embed/${videoId}`}
+          src="https://www.youtube.com/embed/5qap5aO4i9A"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -57,7 +60,7 @@ const StyledModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  iframe {
+  #d56b43 iframe {
     width: 90%;
     height: 100%;
   }
@@ -76,4 +79,4 @@ const TimesContainer = styled.div`
   cursor: pointer;
 `;
 
-Modal.propTypes = PropTypes.string;
+Modal.propTypes = PropTypes.string.isRequired;

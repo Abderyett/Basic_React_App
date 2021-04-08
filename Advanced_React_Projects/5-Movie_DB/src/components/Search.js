@@ -34,20 +34,27 @@ const Form = styled.form`
   align-items: center;
   background-color: ${color.grey_200};
   border-radius: ${rounded.lg};
-  width: 40%;
-  max-width: 1117px;
+  width: 400px;
+  max-width: 800px;
   margin-right: 5rem;
+  @media (max-width: 400px) {
+    width: 130px;
+    margin-right: 0.7rem;
+  }
 `;
 
 const Input = styled.input`
   border-radius: ${rounded.lg};
   height: 3rem;
   width: 100%;
-
   color: ${color.grey_700};
   background-color: ${color.grey_200};
   caret-color: ${color.grey_700};
-
+  @media (max-width: 400px) {
+    &::placeholder {
+      font-size: 10px;
+    }
+  }
   &:focus {
     outline: none;
   }

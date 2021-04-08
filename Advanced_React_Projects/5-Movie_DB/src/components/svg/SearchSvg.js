@@ -21,5 +21,10 @@ const Svg = styled.svg`
   height: 2.5rem;
   margin-left: 1rem;
   width: 20%;
-  max-width: 31px;
+  max-width: 24px;
+  @media (max-width: 400px) {
+    width: 100%;
+    height: auto;
+    margin-left: 0.25rem;
+  }
 `;

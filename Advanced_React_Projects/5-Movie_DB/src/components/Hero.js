@@ -19,6 +19,9 @@ const StyledHero = styled.div`
   width: 100vw;
   max-width: 1400px;
   height: 40vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
   background: url(${img});
   background-repeat: no-repeat;
   background-size: cover;
@@ -26,13 +29,15 @@ const StyledHero = styled.div`
   @media screen and (min-width: 1400px) {
     width: 85vw;
     margin: 0 auto;
+    padding: 4rem;
   } ;
 `;
 const TextHero = styled(motion.div)`
   z-index: 3;
-  padding: 4rem;
+
+  padding: 3rem;
   color: ${color.white};
-  padding-top: 14rem;
+
   line-height: 4rem;
   letter-spacing: 0.125rem;
   h1 {
@@ -43,5 +48,16 @@ const TextHero = styled(motion.div)`
   h2 {
     font-size: 3.2rem;
     font-weight: 300;
+  }
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 300;
+    }
   }
 `;
