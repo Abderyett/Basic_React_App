@@ -65,7 +65,7 @@ export function Cast({ movieID }) {
 
 const StyledTable = styled(motion.table)`
   border-bottom: 0.5px solid ${color.grey_400};
-  border-radius: ${rounded.lg};
+
   border-collapse: collapse;
   color: ${color.blue_grey_700};
   font-size: 1.5rem;
@@ -73,17 +73,24 @@ const StyledTable = styled(motion.table)`
   max-width: 580px;
   margin: 2rem;
   font-family: 'Sans Regular';
+  @media (max-width: 768px) {
+    width: 70vw;
+    font-size: 1.25rem;
+  }
 `;
 
 const TableHead = styled.thead`
   tr,
   th {
     border-bottom: 2px solid ${color.grey_500};
-    box-shadow: ${shadow.md};
+    box-shadow: ${shadow.shadow};
     text-align: left;
     padding: 1rem;
     font-size: 2rem;
     font-family: 'Sans Regular';
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
 `;
 const TableBody = styled(motion.tbody)`

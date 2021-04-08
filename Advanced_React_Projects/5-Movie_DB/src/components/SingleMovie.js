@@ -116,24 +116,46 @@ export function SingleMovie() {
 }
 
 const StyledContainer = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 483px;
   background: ${(props) => `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${props.backdrop})`};
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: top center;
   font-family: 'Sans Regular';
   display: grid;
-  grid-template-columns: 30rem 50%;
+  grid-template-columns: auto 50%;
   grid-gap: 2rem;
   padding-left: 30px;
   grid-template-rows: auto;
   justify-content: center;
   align-content: center;
+  @media (max-width: 1024px) {
+    grid-gap: 1rem;
+    grid-template-columns: auto 60%;
+  }
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 350px;
+    justify-content: center;
+    align-content: center;
+    padding-top: 1rem;
+    padding-left: 5px;
+    height: auto;
+  }
 `;
 
 const ImageContainer = styled.div`
   img {
     border-radius: ${rounded.lg};
+    @media (max-width: 1024px) {
+      width: 250px;
+      height: 400px;
+    }
+    @media (max-width: 768px) {
+      width: 200px;
+      height: 330px;
+    }
   }
 `;
 
@@ -141,30 +163,50 @@ const TextContainer = styled.div`
   color: ${color.white};
   font-family: 'Sans Regular';
   width: 100%;
-  max-width: 1280px;
+  max-width: 740px;
+  height: 450px;
   background: rgba(0, 0, 0, 0.7);
   padding: 2rem;
   border-radius: ${rounded.lg};
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 1024px) {
+    height: 400px;
+    padding: 1rem 2rem;
+  }
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
   h1 {
     font-size: 3.5rem;
     font-weight: 600;
     font-family: 'Sans Regular';
+    @media (max-width: 1024px) {
+      font-size: 2.5rem;
+    }
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
   }
   em {
     color: ${color.grey_400};
     font-size: 1.4rem;
     font-family: 'Sans Regular';
+    @media (max-width: 768px) {
+      font-size: 0.5rem;
+    }
   }
 `;
 const StatContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-
+  @media (max-width: 768px) {
+    font-size: 0.5rem;
+  }
   div {
     margin-left: 0.75rem;
     font-size: 1.5rem;
@@ -175,20 +217,28 @@ const StatContainer = styled.div`
     cursor: pointer;
     color: white;
     background: transparent;
+
     &:focus {
       outline: none;
     }
     span {
       font-size: 1.5rem;
       font-family: 'Sans Regular';
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
     }
   }
 `;
 const Overview = styled.div`
   margin-top: 2rem;
   font-size: 1.5rem;
-  p {
+  @media (max-width: 768px) {
     font-size: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  p {
+    font-size: 1rem;
     line-height: 2rem;
   }
 `;
@@ -199,16 +249,28 @@ const DetailsContainer = styled.section`
   margin-top: 5rem;
   width: 90vw;
   max-width: 1000px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-top: 1rem;
+    justify-content: left;
+  }
 `;
 
 const StyledGenre = styled.p`
   font-size: 1.4rem;
   padding-bottom: 4rem;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding-bottom: 2rem;
+  }
   &:after {
     content: '  ●  ${(props) => props.runtime}m';
   }
 
   span:not(:empty) ~ span:not(:empty):before {
     content: ',  ';
+  }
+  @media (max-width: 1024px) {
+    padding-bottom: 2rem;
   }
 `;

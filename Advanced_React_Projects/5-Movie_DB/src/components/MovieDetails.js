@@ -38,6 +38,9 @@ function MovieDetails({ homepage, budget, status, language, companies }) {
 const StyledArticle = styled.article`
   margin-top: 3.5rem;
   margin-left: 10rem;
+  @media (max-width: 768px) {
+    margin-left: 2rem;
+  }
 
   h4 {
     font-size: 1.75rem;

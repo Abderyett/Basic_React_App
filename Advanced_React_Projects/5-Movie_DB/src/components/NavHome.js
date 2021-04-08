@@ -13,7 +13,7 @@ function NavHome({ title }) {
 }
 
 const Nav = styled.nav`
-  width: 100%;
+  width: 100vw;
   height: 5rem;
   top: 0;
   left: 0;
@@ -25,6 +25,7 @@ const Nav = styled.nav`
   font-family: 'Sans Regular';
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 const StyledLink = styled(Link)`
   color: ${color.grey_100};
