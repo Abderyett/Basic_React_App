@@ -1,10 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
+import Sourcesans from './Fonts/SourceSansPro-Regular.otf';
 
 export const GlobalStyle = createGlobalStyle`
 
   @font-face {
      font-family: 'Sans Regular';
-     src: url('./Fonts/SourceSansPro-Regular.otf');
+     src: url(${Sourcesans});
   }
 *,
 *::before,
@@ -18,5 +19,7 @@ html {
   /* font-family:'Sans Regular',Arial, Helvetica, sans-serif; */
 }
 
-
+body{
+  font-family:'Sans Regular',Arial, Helvetica, sans-serif;
+}
 `;

@@ -18,20 +18,27 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   position: sticky;
-  background: rgb(43, 108, 176);
-  background: linear-gradient(90deg, rgba(43, 108, 176, 1) 0%, rgba(44, 82, 130, 1) 100%);
+  background: rgb(51, 78, 104);
+  background: linear-gradient(21deg, rgba(51, 78, 104, 1) 0%, rgba(44, 82, 130, 1) 100%);
+
   color: ${color.white};
   font-size: 1.75rem;
   font-family: 'Sans Regular';
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    background: ${color.grey_700};
+  }
 `;
 const StyledLink = styled(Link)`
   color: ${color.grey_100};
   text-decoration: none;
   margin: 2rem;
   position: relative;
+  &:hover {
+    color: ${color.grey_300};
+  }
   &:after {
     content: '';
     position: absolute;
@@ -48,7 +55,7 @@ const StyledLink = styled(Link)`
   &:hover:after {
     width: 100%;
     left: 0;
-    background: #fff;
+    background: ${color.grey_300};
   }
 `;
 NavHome.propTypes = PropTypes.string;

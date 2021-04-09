@@ -132,6 +132,9 @@ const StyledContainer = styled.div`
   @media (max-width: 1024px) {
     grid-gap: 1rem;
   }
+  @media (min-width: 768px) and (max-width: 888px) {
+    grid-template-columns: auto 60%;
+  }
   @media (max-width: 768px) {
     display: grid;
     grid-template-columns: 1fr;
@@ -184,6 +187,7 @@ const TextContainer = styled.div`
     height: 400px;
     padding: 1rem 2rem;
   }
+
   @media (max-width: 768px) {
     background-color: ${color.grey_800};
     border-radius: unset;
