@@ -79,7 +79,7 @@ export function SingleMovie() {
       <NavHome title={title} />
       <StyledContainer backdrop={backdrop}>
         <ImageContainer>
-          <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}`} alt={title} />
+          <img src={poster && `https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}`} alt={title} />
         </ImageContainer>
         <TextContainer>
           <h1>
@@ -96,7 +96,7 @@ export function SingleMovie() {
               <div>User Score</div>
             </div>
             <button onClick={() => setShowModal(true)} type="submit">
-              <span dataSi>&#9654; Play trailer</span>
+              <span>&#9654; Play trailer</span>
             </button>
           </StatContainer>
           <Overview>

@@ -13,7 +13,7 @@ export function CircleSvg({ voteAverage }) {
         cy="20"
         stroke={`${color.cyan_500}`}
         strokeWidth="3"
-        strokeDasharray={17 * 2 * Math.PI * (voteAverage / 10)}
+        strokeDasharray={voteAverage && 17 * 2 * Math.PI * (voteAverage / 10)}
         strokeLinecap="round"
         transform="rotate(-90, 20, 20)"
       />
