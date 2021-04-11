@@ -5,25 +5,20 @@ import { SearchSvg } from './svg';
 import { useGlobalContext } from '../context';
 
 function Search() {
-  const { setTerm, fetchMovie, setMovies, term } = useGlobalContext();
+  const { setTerm, fetchMovie, term } = useGlobalContext();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setMovies([]);
     fetchMovie();
+  };
+  const termChange = (e) => {
+    setTerm(e.target.value);
   };
 
   return (
     <Form onSubmit={submitHandler}>
       <SearchSvg />
-      <Input
-        type="text"
-        placeholder="Search for a movie"
-        value={term}
-        onChange={(e) => {
-          setTerm(e.target.value);
-        }}
-      />
+      <Input type="text" placeholder="Search for a movie" value={term} onChange={termChange} />
     </Form>
   );
 }

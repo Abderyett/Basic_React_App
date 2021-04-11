@@ -6,7 +6,7 @@ import { useGlobalContext } from '../context';
 import Card from './Card';
 
 export function CardList() {
-  const { movies, setPages, term } = useGlobalContext();
+  const { movies, setPages, term, totalPages, pages } = useGlobalContext();
 
   return (
     <>
@@ -26,11 +26,13 @@ export function CardList() {
           return <Card key={id} movie={{ ...movie, id }} />;
         })}
       </CardContainer>
-      <BtnContainer>
-        <button type="button" onClick={() => setPages((prevState) => prevState + 1)}>
-          Load More...
-        </button>
-      </BtnContainer>
+      {pages < totalPages && (
+        <BtnContainer>
+          <button type="button" onClick={() => setPages((prevState) => prevState + 1)}>
+            Load More...
+          </button>
+        </BtnContainer>
+      )}
     </>
   );
 }
@@ -70,8 +72,9 @@ const BtnContainer = styled.div`
   button {
     padding: 1.5rem 3rem;
     font-weight: 700;
+    font-size: 1.25rem;
     border-radius: ${rounded.lg};
-    box-shadow: ${shadow.md};
+    box-shadow: ${shadow.shadow};
     color: ${color.white};
     background: ${color.cyan_500};
     cursor: pointer;

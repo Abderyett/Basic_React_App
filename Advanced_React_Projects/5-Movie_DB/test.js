@@ -1,34 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { debounce } from '../utilities/helpers';
+import { useState, useEffect } from 'react';
+// API
+import API from '../API';
+// Helpers
+import { isPersistedState } from '../helpers';
 
-const Navbar = () => {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  const handleScroll = debounce(() => {
-    const currentScrollPos = window.pageYOffset;
-
-    setVisible((prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) || currentScrollPos < 10);
-
-    setPrevScrollPos(currentScrollPos);
-  }, 100);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollPos, visible, handleScroll]);
-
-  const navbarStyles = {
-    position: 'fixed',
-    height: '60px',
-    width: '100%',
-    backgroundColor: 'grey',
-    textAlign: 'center',
-    transition: 'top 0.6s',
-  };
-
-  return <div style={{ ...navbarStyles, top: visible ? '0' : '-60px' }}>Some Company Inc.</div>;
+const initialState = {
+  page: 0,
+  results: [],
+  total_pages: 0,
+  total_results: 0,
 };
 
-export default Navbar;
+export const useHomeFetch = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [state, setState] = useState(initialState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  const fetchMovies = async (page, searchTerm = '') => {
+    try {
+      setError(false);
+      setLoading(true);
+
+      const movies = await API.fetchMovies(searchTerm, page);
+
+      setState((prev) => ({
+        ...movies,
+        results: page > 1 ? [...prev.results, ...movies.results] : [...movies.results],
+      }));
+    } catch (error) {
+      setError(true);
+    }
+    setLoading(false);
+  };
+
+  // Search and initial
+  useEffect(() => {
+    if (!searchTerm) {
+      const sessionState = isPersistedState('homeState');
+
+      if (sessionState) {
+        console.log('Grabbing from sessionStorage');
+        setState(sessionState);
+        return;
+      }
+    }
+    console.log('Grabbing from API');
+    setState(initialState);
+    fetchMovies(1, searchTerm);
+  }, [searchTerm]);
+
+  // Load More
+  useEffect(() => {
+    if (!isLoadingMore) return;
+
+    fetchMovies(state.page + 1, searchTerm);
+    setIsLoadingMore(false);
+  }, [isLoadingMore, searchTerm, state.page]);
+
+  // Write to sessionStorage
+  useEffect(() => {
+    if (!searchTerm) sessionStorage.setItem('homeState', JSON.stringify(state));
+  }, [searchTerm, state]);
+
+  return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
+};

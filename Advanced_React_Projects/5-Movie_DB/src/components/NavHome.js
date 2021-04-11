@@ -16,8 +16,6 @@ function NavHome({ title }) {
     }
     if (prevScrollPos < currentPos) {
       setVisible(false);
-      console.log('prevScrollPos', prevScrollPos);
-      console.log('currentPos', currentPos);
     } else {
       setVisible(true);
     }
@@ -28,7 +26,7 @@ function NavHome({ title }) {
     window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);
-  });
+  }, [visible, prevScrollPos]);
 
   return (
     <Nav show={visible}>
@@ -40,10 +38,9 @@ function NavHome({ title }) {
 const Nav = styled.nav`
   width: 100vw;
   height: 5rem;
-  top: ${(props) => (props.show ? '0' : '-60px')};
+  top: ${(props) => (props.show ? '0' : '-50px')};
   left: 0;
-  position: fixed;
-
+  position: sticky;
   background: rgb(51, 78, 104);
   background: linear-gradient(21deg, rgba(51, 78, 104, 1) 0%, rgba(44, 82, 130, 1) 100%);
   color: ${color.white};

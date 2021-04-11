@@ -7,9 +7,9 @@ function Home() {
   return (
     <>
       <Navbar />
-      {!term && <Hero />}
+      {term === '' && <Hero />}
 
-      {loading && pages === 1 ? <Loading /> : <CardList />}
+      {term === '' && loading && pages === 1 ? <Loading /> : <CardList />}
     </>
   );
 }

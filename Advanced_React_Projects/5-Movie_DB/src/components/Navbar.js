@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import { color } from '../utilities';
 import { Logo } from './svg';
 import Search from './Search';
+import { useGlobalContext } from '../context';
 
 export function Navbar() {
+  const { setTerm } = useGlobalContext();
   return (
     <Nav>
-      <Link to="/">
+      <Link to="/" onClick={() => setTerm('')}>
         <Logo />
       </Link>
       <Search />
@@ -18,8 +20,8 @@ export function Navbar() {
 
 const Nav = styled.nav`
   height: 6rem;
-  background: rgb(43, 108, 176);
-  background: linear-gradient(90deg, rgba(43, 108, 176, 1) 0%, rgba(44, 82, 130, 1) 100%);
+  background: rgb(51, 78, 104);
+  background: linear-gradient(21deg, rgba(51, 78, 104, 1) 0%, rgba(44, 82, 130, 1) 100%);
   color: ${color.grey_100};
   display: flex;
   align-items: center;
