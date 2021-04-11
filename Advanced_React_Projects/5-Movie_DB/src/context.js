@@ -20,29 +20,25 @@ function AppProvider({ children }) {
   const endPoint = term ? searchUrl : popularMoviesUrl;
   // Fetch Movies
 
-  const fetchMovie = async () => {
+  const fetchMovie = _.debounce(async () => {
     setLoading(true);
     try {
       const { data } = await axios.get(endPoint);
-      console.log(data);
+
       setTotalPages(data.total_pages);
-      if (!term) {
-        setMovies(data.results);
-        setPages(1);
-      } else if (!term && pages === 1) {
+      if (!term && pages === 1) {
         setMovies(data.results);
       } else if (!term && pages > 1) {
         setMovies((oldMovies) => [...oldMovies, ...data.results]);
-      } else if (term && pages === 1) {
-        setMovies(data.results);
-      } else if (!term && pages > 1) {
+      } else if (term) {
+        setMovies([]);
         setMovies((oldMovies) => [...oldMovies, ...data.results]);
       }
       setLoading(false);
     } catch (error) {
       console.log('Oh No There is An Error', error);
     }
-  };
+  }, 500);
 
   useEffect(() => {
     fetchMovie();

@@ -10,7 +10,12 @@ export function Navbar() {
   const { setTerm } = useGlobalContext();
   return (
     <Nav>
-      <Link to="/" onClick={() => setTerm('')}>
+      <Link
+        to="/"
+        onClick={() => {
+          setTerm('');
+        }}
+      >
         <Logo />
       </Link>
       <Search />
