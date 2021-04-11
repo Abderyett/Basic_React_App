@@ -27,11 +27,13 @@ function AppProvider({ children }) {
 
       setTotalPages(data.total_pages);
       if (!term && pages === 1) {
+        setMovies([]);
         setMovies(data.results);
       } else if (!term && pages > 1) {
         setMovies((oldMovies) => [...oldMovies, ...data.results]);
-      } else if (term) {
-        setMovies([]);
+      } else if (term && pages === 1) {
+        setMovies(data.results);
+      } else if (term && pages > 1) {
         setMovies((oldMovies) => [...oldMovies, ...data.results]);
       }
       setLoading(false);
@@ -42,7 +44,7 @@ function AppProvider({ children }) {
 
   useEffect(() => {
     fetchMovie();
-  }, [pages, term]);
+  }, [pages]);
 
   return (
     <AppContext.Provider

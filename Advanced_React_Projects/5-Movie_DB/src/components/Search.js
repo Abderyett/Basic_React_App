@@ -5,11 +5,12 @@ import { SearchSvg } from './svg';
 import { useGlobalContext } from '../context';
 
 function Search() {
-  const { setTerm, fetchMovie, term } = useGlobalContext();
+  const { setTerm, fetchMovie, term, setMovies } = useGlobalContext();
 
   const submitHandler = (e) => {
     e.preventDefault();
     fetchMovie();
+    setMovies([]);
   };
   const termChange = (e) => {
     setTerm(e.target.value);

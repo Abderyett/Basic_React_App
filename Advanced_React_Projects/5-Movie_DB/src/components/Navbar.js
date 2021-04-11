@@ -7,15 +7,14 @@ import Search from './Search';
 import { useGlobalContext } from '../context';
 
 export function Navbar() {
-  const { setTerm } = useGlobalContext();
+  const { setTerm, setPages } = useGlobalContext();
+  const clickHadnler = () => {
+    setTerm('');
+    setPages(1);
+  };
   return (
     <Nav>
-      <Link
-        to="/"
-        onClick={() => {
-          setTerm('');
-        }}
-      >
+      <Link to="/" onClick={clickHadnler}>
         <Logo />
       </Link>
       <Search />
