@@ -18,6 +18,7 @@ const App = () => (
 
 const Wrapper = styled.div`
   margin: 10rem auto;
+
   width: 70vw;
   max-width: 1300px;
   height: 100vh;

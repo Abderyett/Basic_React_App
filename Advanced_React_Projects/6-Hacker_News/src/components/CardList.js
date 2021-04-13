@@ -1,18 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Articles from './Articles';
+import { useGlobalContext } from '../context.js';
 
 function CardList() {
-  return (
-    <Wrapper>
-      <Articles />
-      <Articles />
-      <Articles />
-      <Articles />
-      <Articles />
-      <Articles />
-    </Wrapper>
-  );
+  const { isLoading, news } = useGlobalContext();
+
+  return <Wrapper />;
 }
 
 const Wrapper = styled.div`
