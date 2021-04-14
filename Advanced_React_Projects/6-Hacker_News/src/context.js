@@ -16,13 +16,14 @@ const AppContext = React.createContext();
 
 function AppProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state);
   const url = `https://hn.algolia.com/api/v1/search?query=${state.term}`;
 
   const fetchData = async () => {
     dispatch({ type: SET_LOADING });
     try {
       const { data } = await axios.get(url);
-      console.log(data);
+
       dispatch({ type: SET_STORIES, payload: { news: data.hits, page: data.page, pagesNumber: data.nbPages } });
     } catch (error) {
       console.log(error);
@@ -34,7 +35,6 @@ function AppProvider({ children }) {
   };
   const removeItem = (id) => {
     dispatch({ type: REMOVE_ITEM, payload: id });
-    console.log(id);
   };
 
   useEffect(() => {

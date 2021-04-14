@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { color, rounded } from '../utilities';
+import { useGlobalContext } from '../context';
 
 function Pages() {
+  const { page, pagesNumber } = useGlobalContext();
+
   return (
     <PageWrapper>
       <button type="button">Prev</button>
-      <span>1 of 50</span>
+      <span>
+        {page} of {pagesNumber}
+      </span>
       <button type="button">Next</button>
     </PageWrapper>
   );

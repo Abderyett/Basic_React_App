@@ -4,7 +4,7 @@ import { color, rounded } from '../utilities';
 import { useGlobalContext } from '../context.js';
 
 function Search() {
-  const { searchTerm, fetchData } = useGlobalContext();
+  const { searchTerm, fetchData, term } = useGlobalContext();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -12,7 +12,7 @@ function Search() {
   };
   return (
     <StyledForm onSubmit={submitHandler}>
-      <input type="text" placeholder="Search For News" onChange={(e) => searchTerm(e.target.value)} />
+      <input type="text" placeholder="Search For News" value={term} onChange={(e) => searchTerm(e.target.value)} />
     </StyledForm>
   );
 }
