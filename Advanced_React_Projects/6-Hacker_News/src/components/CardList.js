@@ -1,12 +1,23 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import styled from 'styled-components';
 import Articles from './Articles';
 import { useGlobalContext } from '../context.js';
 
 function CardList() {
-  const { isLoading, news } = useGlobalContext();
+  const { news } = useGlobalContext();
 
-  return <Wrapper />;
+  return (
+    <Wrapper>
+      {news.map((el) => {
+        const { title, num_comments, points, url, objectID } = el;
+
+        return (
+          <Articles key={objectID} title={title} comments={num_comments} points={points} url={url} id={objectID} />
+        );
+      })}
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div`

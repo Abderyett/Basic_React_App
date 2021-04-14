@@ -1,11 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { color, rounded } from '../utilities';
+import { useGlobalContext } from '../context.js';
 
 function Search() {
+  const { searchTerm, fetchData } = useGlobalContext();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    fetchData();
+  };
   return (
-    <StyledForm>
-      <input type="text" placeholder="Search For News" />
+    <StyledForm onSubmit={submitHandler}>
+      <input type="text" placeholder="Search For News" onChange={(e) => searchTerm(e.target.value)} />
     </StyledForm>
   );
 }
@@ -19,6 +26,7 @@ const StyledForm = styled.form`
     color: ${color.grey_700};
     font-size: 1.5rem;
     border-radius: ${rounded.md};
+
     &:focus {
       outline: 1px solid ${color.blue_500};
     }

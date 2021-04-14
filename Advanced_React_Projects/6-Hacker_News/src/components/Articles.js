@@ -1,22 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { color, rounded, shadow } from '../utilities';
+import { useGlobalContext } from '../context';
 
-function Articles() {
+function Articles({ title, comments, points, url, id }) {
+  const { removeItem } = useGlobalContext();
   return (
     <Card>
-      <h2>Stephen Hawking Has Died</h2>
-      <h4>6015 points by Cogito | 436 comments</h4>
-      <a href="/" target="_blank" rel="noopener noreferrer">
+      <h2>{title}</h2>
+      <h4>
+        {points} points by Cogito | {comments} comments
+      </h4>
+      <a href={url} target="_blank" rel="noopener noreferrer">
         Read More
       </a>
-      <button type="button">Remove</button>
+      <button
+        type="button"
+        onClick={() => {
+          removeItem(id);
+        }}
+      >
+        Remove
+      </button>
     </Card>
   );
 }
 
 const Card = styled.article`
   width: 570px;
+
   background-color: ${color.white};
   border-radius: ${rounded.md};
   box-shadow: ${shadow.md};
@@ -46,8 +59,14 @@ const Card = styled.article`
     cursor: pointer;
   }
   @media (max-width: 768px) {
-    width: 350px;
+    width: 450px;
   }
 `;
-
+Articles.propTypes = {
+  title: PropTypes.string,
+  comments: PropTypes.number,
+  points: PropTypes.number,
+  url: PropTypes.string,
+  id: PropTypes.string,
+};
 export default Articles;

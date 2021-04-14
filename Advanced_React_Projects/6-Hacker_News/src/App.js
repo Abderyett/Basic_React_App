@@ -5,16 +5,27 @@ import CardLsit from './components/CardList';
 import Pages from './components/Pages';
 import { GlobalStyle } from './Global';
 import { color } from './utilities';
+import { useGlobalContext } from './context';
+import { Loading } from './components/Loading';
 
-const App = () => (
-  <Wrapper>
-    <h1>Search Haker News</h1>
-    <Search />
-    <Pages />
-    <CardLsit />
-    <GlobalStyle />
-  </Wrapper>
-);
+const App = () => {
+  const { isLoading } = useGlobalContext();
+  return (
+    <Wrapper>
+      <h1>Search Haker News</h1>
+      <Search />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <Pages />
+          <CardLsit />
+        </>
+      )}
+      <GlobalStyle />
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   margin: 10rem auto;
