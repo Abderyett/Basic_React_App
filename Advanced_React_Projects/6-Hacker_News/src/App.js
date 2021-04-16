@@ -14,14 +14,8 @@ const App = () => {
     <Wrapper>
       <h1>Search Haker News</h1>
       <Search />
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <Pages />
-          <CardLsit />
-        </>
-      )}
+      <Pages />
+      {isLoading ? <Loading /> : <CardLsit />}
       <GlobalStyle />
     </Wrapper>
   );

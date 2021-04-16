@@ -4,15 +4,19 @@ import { color, rounded } from '../utilities';
 import { useGlobalContext } from '../context';
 
 function Pages() {
-  const { page, pagesNumber } = useGlobalContext();
+  const { page, pagesNumber, handlePage, isLoading } = useGlobalContext();
 
   return (
     <PageWrapper>
-      <button type="button">Prev</button>
+      <button disabled={isLoading} type="button" onClick={() => handlePage('dec')}>
+        Prev
+      </button>
       <span>
-        {page} of {pagesNumber}
+        {page + 1} of {pagesNumber}
       </span>
-      <button type="button">Next</button>
+      <button disabled={isLoading} type="button" onClick={() => handlePage('inc')}>
+        Next
+      </button>
     </PageWrapper>
   );
 }
@@ -35,6 +39,9 @@ const PageWrapper = styled.div`
     cursor: pointer;
     &:hover {
       background-color: ${color.blue_400};
+    }
+    &:disabled {
+      cursor: not-allowed;
     }
   }
   span {
