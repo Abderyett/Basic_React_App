@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import img from '../images/Hero_image.jpg';
+// import img from '../images/Hero_image.jpg';
 import { color } from '../utilities';
+import { useGlobalContext } from '../context';
 
 export function Hero() {
+  const { heroImg } = useGlobalContext();
+  const imgUrl = `http://image.tmdb.org/t/p/w1280${heroImg}`;
   return (
-    <StyledHero>
+    <StyledHero img={imgUrl}>
       <TextHero initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 2 }}>
         <h1>Welcome.</h1>
         <h2>Millions of movies, TV shows and people to discover. Explore now.</h2>
@@ -18,14 +21,26 @@ export function Hero() {
 const StyledHero = styled.div`
   width: 100vw;
   max-width: 1400px;
-  height: 40vh;
+  height: 500px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  background: url(${img});
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0.65) 100%), url(${({ img }) => img});
   background-repeat: no-repeat;
-  background-size: cover;
-  filter: sepia(90%) hue-rotate(170deg) saturate(190%);
+  background-size: 100%, cover;
+  background-position: center, center;
+
+  position: relative;
+  animation: animateHeroImage 1s;
+
+  @keyframes animateHeroImage {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
   @media screen and (min-width: 1400px) {
     width: 85vw;
     margin: 0 auto;

@@ -1,15 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { color } from '../utilities';
 import { Logo } from './svg';
 import Search from './Search';
 import { useGlobalContext } from '../context';
 
 export function Navbar() {
-  const { setTerm, setPages } = useGlobalContext();
+  const { setTerm, setPages, fetchMovie } = useGlobalContext();
+  const history = useHistory();
   const clickHadnler = () => {
     setTerm('');
+
     setPages(1);
   };
   return (

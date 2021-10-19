@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { color } from '../utilities';
+import { useGlobalContext } from '../context';
 
 function NavHome({ title }) {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const { setTerm, fetchMovie, setSearchedMovies, setPages, setMovies } = useGlobalContext();
 
   const handleScroll = _.debounce(() => {
     const currentPos = window.pageYOffset;
@@ -28,9 +30,21 @@ function NavHome({ title }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [visible, prevScrollPos]);
 
+  const homeHandler = () => {
+    setTerm('');
+    const local = JSON.parse(localStorage.getItem('moviesList'));
+    setMovies(local);
+    // setPages(1);
+
+    // fetchMovie();
+  };
+
   return (
     <Nav show={visible}>
-      <StyledLink to="/">Home</StyledLink> | {title}
+      <StyledLink to="/" onClick={homeHandler}>
+        Home
+      </StyledLink>{' '}
+      | &nbsp; {title}
     </Nav>
   );
 }
@@ -81,5 +95,7 @@ const StyledLink = styled(Link)`
     background: ${color.grey_300};
   }
 `;
-NavHome.propTypes = PropTypes.string.isRequired;
+NavHome.propTypes = {
+  title: PropTypes.string,
+};
 export default NavHome;

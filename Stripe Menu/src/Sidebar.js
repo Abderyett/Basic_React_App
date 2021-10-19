@@ -16,7 +16,7 @@ function Sidebar() {
           </button>
           <div className="sidebar-links">
             {data.map((el) => (
-              <article key={uuidv4()}>
+              <div className="links-container" key={uuidv4()}>
                 <h4>{el.page}</h4>
                 <div className="sidebar-sublinks">
                   {el.links.map((link) => (
@@ -26,7 +26,7 @@ function Sidebar() {
                     </a>
                   ))}
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         </aside>

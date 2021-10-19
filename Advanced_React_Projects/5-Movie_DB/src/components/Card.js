@@ -19,7 +19,7 @@ function Card({ movie }) {
       </Link>
       <CardFooter>
         <CircleSvg voteAverage={voteAverage} />
-        <h3>{title.substring(0, 30)}</h3>
+        <h3>{title && title.substring(0, 30)}</h3>
         <h4>{!releaseDate ? 'No Release Date' : format(new Date(releaseDate), 'dd MMM yyyy')}</h4>
       </CardFooter>
     </StyledCard>

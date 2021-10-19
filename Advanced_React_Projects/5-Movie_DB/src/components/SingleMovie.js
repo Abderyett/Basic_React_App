@@ -54,21 +54,20 @@ export function SingleMovie() {
     tagline,
   } = singleMovie;
 
-  // const fetchVideoId = async () => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${title}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
-  //     );
-  //     console.log(data);
+  const fetchVideoId = async () => {
+    try {
+      const { data } = await axios.get(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${title}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+      );
 
-  //     setvideoId(data.items[0].id.videoId);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchVideoId();
-  // }, [videoId]);
+      setvideoId(data.items[0].id.videoId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchVideoId();
+  }, [videoId]);
 
   if (loading) {
     return <Loading />;

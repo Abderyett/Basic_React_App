@@ -20,11 +20,9 @@ export function CardList() {
             <h1>Popular Movies</h1>
           </Heading>
         )}
-
-        {movies.map((movie) => {
-          const { id } = movie;
-          return <Card key={id} movie={{ ...movie, id }} />;
-        })}
+        {movies.map((movie) => (
+          <Card key={movie.id} movie={{ ...movie }} />
+        ))}
       </CardContainer>
       {pages < totalPages && (
         <BtnContainer>
@@ -36,6 +34,10 @@ export function CardList() {
     </>
   );
 }
+
+// {term.length > 0
+//   ? searchedMovies.map((searchedMovie) => <Card key={searchedMovie.id} movie={{ ...searchedMovie }} />)
+//   : movies.map((movie) => <Card key={movie.id} movie={{ ...movie }} />)}
 
 const CardContainer = styled.section`
   width: 95vw;

@@ -9,15 +9,17 @@ function AppProvider({ children }) {
   const [term, setTerm] = useState('');
   const [pages, setPages] = useState(1);
   const [movies, setMovies] = useState([]);
+  const [searchedMovies, setSearchedMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [heroImg, setHeroImg] = useState('');
 
-  const popularMoviesUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pages}`;
+  const popularMovies = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pages}`;
 
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${term}&page=${pages}`;
+  const searchMovie = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${term}&page=${pages}`;
 
-  const endPoint = term ? searchUrl : popularMoviesUrl;
+  const endPoint = term.length > 0 ? searchMovie : popularMovies;
   // Fetch Movies
 
   const fetchMovie = _.debounce(async () => {
@@ -26,25 +28,30 @@ function AppProvider({ children }) {
       const { data } = await axios.get(endPoint);
 
       setTotalPages(data.total_pages);
-      if (!term && pages === 1) {
-        setMovies([]);
-        setMovies(data.results);
-      } else if (!term && pages > 1) {
-        setMovies((oldMovies) => [...oldMovies, ...data.results]);
-      } else if (term && pages === 1) {
-        setMovies(data.results);
-      } else if (term && pages > 1) {
-        setMovies((oldMovies) => [...oldMovies, ...data.results]);
-      }
+
+      setMovies((prevState) => (pages > 1 ? [...prevState, ...data.results] : [...data.results]));
+      setHeroImg(data.results[0].backdrop_path);
+
       setLoading(false);
     } catch (error) {
       console.log('Oh No There is An Error', error);
     }
   }, 500);
+  useEffect(() => {
+    if (term.length === 0) {
+      fetchMovie();
+    } else if (term.length > 1 && pages > 1) {
+      fetchMovie();
+    } else {
+      setMovies([]);
+      setPages(1);
+      fetchMovie();
+    }
+  }, [pages, term]);
 
   useEffect(() => {
-    fetchMovie();
-  }, [pages]);
+    localStorage.setItem('moviesList', JSON.stringify(movies));
+  }, [movies]);
 
   return (
     <AppContext.Provider
@@ -61,6 +68,9 @@ function AppProvider({ children }) {
         fetchMovie,
         showModal,
         setShowModal,
+        searchedMovies,
+        setSearchedMovies,
+        heroImg,
       }}
     >
       {children}
